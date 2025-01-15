@@ -3,16 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автозапчасти онлайн</title>
+    <title>Автозапчасти онлайн | Ваш надежный помощник в ремонте</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        .contact-form-container {
+
+        :root {
+            --primary: #e63946;
+            --secondary: #457b9d;
+            --light: #f8fafc;
+            --dark: #1d3557;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        .header {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .slide:nth-child(1) {
+            background-image: url('https://uralavtogid.ru/wp-content/uploads/2021/02/d12af5cee03b3b3231b219d4b15f0ae5.jpg');
+        }
+
+        .slide:nth-child(2) {
+            background-image: url('https://i.pinimg.com/originals/41/7d/ce/417dce18fd4942d1ac4e4dd709cd6653.jpg');
+        }
+
+        .slide:nth-child(3) {
+            background-image: url('https://img.goodfon.ru/original/1920x1080/5/4b/mercedes-benz-300-slr-fabian.jpg');
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 100px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-content p {
+            font-size: 1.4em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+
+.contact-form-container {
             background-color: #007bff;
             color: white;
             padding: 40px;
@@ -45,223 +145,184 @@
         .contact-form button:hover {
             background-color: #003d82;
         }
-        .header-phone {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 20px;
-            color: #333;
-            text-decoration: none;
-        }
-        .order-button {
-            position: absolute;
-            top: 20px;
-            right: 250px;
-            padding: 10px 20px;
-            background-color: #007bff;
+
+
+
+
+
+
+        .cta-button {
+            background: var(--primary);
             color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
             text-decoration: none;
-            border-radius: 5px;
-        }
-        .main-heading {
-            font-size: 48px;
-            max-width: 600px;
-            margin-bottom: 30px;
-        }
-        .blue-banner {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
             font-weight: bold;
-            border-radius: 5px;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1.2s ease-out;
         }
 
-
-
-
-
-
-
-
-
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #d62828;
         }
-        body {
-            line-height: 1.6;
+
+        section {
+            padding: 80px 20px;
         }
-        .container2 {
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background-color: #f5f5f5;
+
+        .services {
+            background: var(--light);
         }
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px 0;
-        }
-        .feature-card {
-            text-align: center;
-            padding: 20px;
-        }
-        .search-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 40px 0;
-        }
-        .filter-steps {
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 40px 0;
+            margin-top: 40px;
         }
-        .delivery-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px 0;
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        .pricing {
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 2.5em;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .search-section {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .search-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            padding: 40px 0;
+            margin-top: 40px;
         }
+
+        .search-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
         .contact {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px 0;
-            background-color: #f5f5f5;
+            background: var(--dark);
+            color: white;
+            position: relative;
         }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #d62828;
+        }
+
         .section-title {
             text-align: center;
             margin-bottom: 40px;
         }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            color: inherit;
+        }
+
+        .section-title p {
+            margin-top: 15px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Автозапчасти онлайн: Ваш надежный помощник в ремонте</h1>
-        <p>Найдите все необходимые автозапчасти по выгодным ценам.</p>
-        <a href="#" class="cta-button">Заказать запчасти</a>
-    </div>
-
-    <div class="container2">
-        <h2 class="section-title">Широкий выбор деталей для любых моделей автомобилей</h2>
-        <div class="features">
-            <div class="feature-card">
-                <img src="/api/placeholder/200/200" alt="Легковые автомобили">
-                <h3>Легковые автомобили</h3>
-                <p>Огромный выбор деталей для всех популярных марок и моделей.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/200/200" alt="Грузовые автомобили">
-                <h3>Грузовые автомобили</h3>
-                <p>Широкий ассортимент запчастей для коммерческого транспорта.</p>
-            </div>
+    <header class="header">
+        <div class="slider">
+            <div class="slide active"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
         </div>
-
-        <div class="search-features">
-            <div class="feature-card">
-                <img src="/api/placeholder/150/150" alt="Поиск по VIN">
-                <h3>Поиск по VIN-коду</h3>
-                <p>Найдите нужные запчасти по VIN-коду вашего автомобиля.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/150/150" alt="Фильтры">
-                <h3>Фильтры по параметрам</h3>
-                <p>Узкий выбор по марке, модели, году выпуска и т.д.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/150/150" alt="Быстрый подбор">
-                <h3>Быстрый подбор</h3>
-                <p>Найдите нужные запчасти за несколько секунд.</p>
-            </div>
+        <div class="header-content">
+            <h1>Автозапчасти онлайн</h1>
+            <p>Ваш надежный помощник в ремонте. Найдите все необходимые автозапчасти по выгодным ценам.</p>
+            <a href="#order-form" class="cta-button">Заказать запчасти</a>
         </div>
+    </header>
 
-        <h2 class="section-title">Удобные фильтры для подбора необходимых запчастей</h2>
-        <div class="filter-steps">
-            <div class="feature-card">
-                <img src="/api/placeholder/180/180" alt="По марке">
-                <h3>1. По марке и модели автомобиля</h3>
-                <p>Выберите из списка популярных марок и моделей.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/180/180" alt="По типу">
-                <h3>2. По типу запчасти</h3>
-                <p>Выберите из списка категорий запчастей, например, двигатель, тормозная система, подвеска.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/180/180" alt="По году">
-                <h3>3. По году выпуска</h3>
-                <p>Выберите год выпуска вашего автомобиля для точного подбора.</p>
-            </div>
-        </div>
-
-        <h2 class="section-title">Быстрая доставка в любую точку города</h2>
-        <div class="delivery-steps">
-            <div class="feature-card">
-                <img src="/api/placeholder/160/160" alt="Заказ">
-                <h3>1. Заказ онлайн или по телефону</h3>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/160/160" alt="Обработка">
-                <h3>2. Обработка заказа и подтверждение</h3>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/160/160" alt="Доставка">
-                <h3>3. Доставка в течение часов</h3>
-            </div>
-        </div>
-
-        <h2 class="section-title">Выгодные цены и гарантия качества</h2>
-        <div class="pricing">
-            <div class="feature-card">
-                <img src="/api/placeholder/170/170" alt="Цены">
-                <h3>Конкурентные цены</h3>
-                <p>Мы предлагаем выгодные цены на все запчасти.</p>
-            </div>
-            <div class="feature-card">
-                <img src="/api/placeholder/170/170" alt="Гарантия">
-                <h3>Гарантия качества</h3>
-                <p>Мы даем гарантию на все запчасти.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-       <div class="container">
-     
-
-
-
+    <section class="contact" id="order-form">
         <div class="contact-form-container" id="contact-form">
             <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
             <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем подберем нужную запчасть, доверьте эту работу нашим специалистам</p>
@@ -273,24 +334,83 @@
                 <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
             </form>
         </div>
-    </div>
-    <div class="contact">
-        <div class="container2">
-            <h2 class="section-title">Свяжитесь с нами для консультации и оформления заказа</h2>
-            <div class="contact-info">
-                <div class="feature-card">
-                    <img src="/api/placeholder/140/140" alt="Телефон">
-                    <h3>1. Позвоните нам</h3>
-                    <p>+ () --</p>
-                </div>
-                <div class="feature-card">
-                    <img src="/api/placeholder/140/140" alt="Email">
-                    <h3>2. Напишите нам</h3>
-                    <p>info@example.com</p>
-                </div>
+    </section>
 
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Широкий выбор деталей</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Легковые автомобили</h3>
+                    <p>Огромный выбор деталей для всех популярных марок и моделей.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Грузовые автомобили</h3>
+                    <p>Широкий ассортимент запчастей для коммерческого транспорта.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Поиск по VIN-коду</h3>
+                    <p>Найдите нужные запчасти по VIN-коду вашего автомобиля.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Удобные фильтры для подбора</h2>
+            </div>
+            <div class="search-grid">
+                <div class="search-item">
+                    <i class="fas fa-car-side"></i>
+                    <h3>По марке и модели</h3>
+                    <p>Выберите из списка популярных марок и моделей.</p>
+                </div>
+                <div class="search-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>По типу запчасти</h3>
+                    <p>Выберите из списка категорий: двигатель, тормозная система, подвеска.</p>
+                </div>
+                <div class="search-item">
+                    <i class="fas fa-calendar"></i>
+                    <h3>По году выпуска</h3>
+                    <p>Выберите год выпуска вашего автомобиля для точного подбора.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        showSlide(0);
+        setInterval(nextSlide, 4000);
+
+        // Smooth scroll для кнопки CTA
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    </script>
 </body>
 </html>
