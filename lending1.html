@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автозапчасти онлайн</title>
+    <style>
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .contact-form-container {
+            background-color: #007bff;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #003d82;
+        }
+        .header-phone {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+        .order-button {
+            position: absolute;
+            top: 20px;
+            right: 250px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .main-heading {
+            font-size: 48px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        .blue-banner {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+
+
+
+
+
+
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+        }
+        .container2 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #f5f5f5;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .search-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+        .filter-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .delivery-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+            background-color: #f5f5f5;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Автозапчасти онлайн: Ваш надежный помощник в ремонте</h1>
+        <p>Найдите все необходимые автозапчасти по выгодным ценам.</p>
+        <a href="#" class="cta-button">Заказать запчасти</a>
+    </div>
+
+    <div class="container2">
+        <h2 class="section-title">Широкий выбор деталей для любых моделей автомобилей</h2>
+        <div class="features">
+            <div class="feature-card">
+                <img src="/api/placeholder/200/200" alt="Легковые автомобили">
+                <h3>Легковые автомобили</h3>
+                <p>Огромный выбор деталей для всех популярных марок и моделей.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/200/200" alt="Грузовые автомобили">
+                <h3>Грузовые автомобили</h3>
+                <p>Широкий ассортимент запчастей для коммерческого транспорта.</p>
+            </div>
+        </div>
+
+        <div class="search-features">
+            <div class="feature-card">
+                <img src="/api/placeholder/150/150" alt="Поиск по VIN">
+                <h3>Поиск по VIN-коду</h3>
+                <p>Найдите нужные запчасти по VIN-коду вашего автомобиля.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/150/150" alt="Фильтры">
+                <h3>Фильтры по параметрам</h3>
+                <p>Узкий выбор по марке, модели, году выпуска и т.д.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/150/150" alt="Быстрый подбор">
+                <h3>Быстрый подбор</h3>
+                <p>Найдите нужные запчасти за несколько секунд.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Удобные фильтры для подбора необходимых запчастей</h2>
+        <div class="filter-steps">
+            <div class="feature-card">
+                <img src="/api/placeholder/180/180" alt="По марке">
+                <h3>1. По марке и модели автомобиля</h3>
+                <p>Выберите из списка популярных марок и моделей.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/180/180" alt="По типу">
+                <h3>2. По типу запчасти</h3>
+                <p>Выберите из списка категорий запчастей, например, двигатель, тормозная система, подвеска.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/180/180" alt="По году">
+                <h3>3. По году выпуска</h3>
+                <p>Выберите год выпуска вашего автомобиля для точного подбора.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Быстрая доставка в любую точку города</h2>
+        <div class="delivery-steps">
+            <div class="feature-card">
+                <img src="/api/placeholder/160/160" alt="Заказ">
+                <h3>1. Заказ онлайн или по телефону</h3>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/160/160" alt="Обработка">
+                <h3>2. Обработка заказа и подтверждение</h3>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/160/160" alt="Доставка">
+                <h3>3. Доставка в течение часов</h3>
+            </div>
+        </div>
+
+        <h2 class="section-title">Выгодные цены и гарантия качества</h2>
+        <div class="pricing">
+            <div class="feature-card">
+                <img src="/api/placeholder/170/170" alt="Цены">
+                <h3>Конкурентные цены</h3>
+                <p>Мы предлагаем выгодные цены на все запчасти.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/170/170" alt="Гарантия">
+                <h3>Гарантия качества</h3>
+                <p>Мы даем гарантию на все запчасти.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+       <div class="container">
+     
+
+
+
+        <div class="contact-form-container" id="contact-form">
+            <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
+            <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем подберем нужную запчасть, доверьте эту работу нашим специалистам</p>
+
+            <form class="contact-form" action="mailto:player14017@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Введите ваше имя" required>
+                <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
+                <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
+            </form>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="container2">
+            <h2 class="section-title">Свяжитесь с нами для консультации и оформления заказа</h2>
+            <div class="contact-info">
+                <div class="feature-card">
+                    <img src="/api/placeholder/140/140" alt="Телефон">
+                    <h3>1. Позвоните нам</h3>
+                    <p>+ () --</p>
+                </div>
+                <div class="feature-card">
+                    <img src="/api/placeholder/140/140" alt="Email">
+                    <h3>2. Напишите нам</h3>
+                    <p>info@example.com</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
