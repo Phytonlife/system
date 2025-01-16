@@ -27,6 +27,7 @@
             color: var(--dark);
         }
 
+        /* Header Styles */
         .header {
             position: relative;
             height: 100vh;
@@ -41,6 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
         }
 
         .slide {
@@ -67,7 +69,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .slide:nth-child(1) {
@@ -85,30 +87,79 @@
         .header-content {
             position: relative;
             z-index: 2;
-            text-align: center;
-            padding: 100px 20px;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            padding: 20px 5%;
+            gap: 20px;
         }
 
-        .header-content h1 {
+        .promo-content {
+            flex: 1;
+            padding: 40px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .promo-content h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
-            animation: fadeInDown 1s ease-out;
+            font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .header-content p {
+        .promo-content p {
             font-size: 1.4em;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeInUp 1s ease-out;
+            margin-bottom: 15px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
+        .highlight-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        /* Contact Form Styles */
+        .contact-form-container {
+            flex: 1;
+            background-color: rgba(0, 123, 255, 0.9);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #003d82;
+        }
+
+        /* Section Styles */
         section {
             padding: 80px 20px;
         }
@@ -118,6 +169,17 @@
             margin: 0 auto;
         }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            color: var(--primary);
+        }
+
+        /* Services Section */
         .services {
             background: var(--light);
         }
@@ -147,10 +209,7 @@
             margin-bottom: 20px;
         }
 
-        .portfolio {
-            background: white;
-        }
-
+        /* Portfolio Section */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -171,115 +230,7 @@
             object-fit: cover;
         }
 
-        .pricing {
-            background: var(--light);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .price-card {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .price-card h3 {
-            color: var(--primary);
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .price {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .contact {
-            background: var(--dark);
-            color: white;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 40px auto 0;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        button {
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: var(--secondary);
-        }
-
-        .faq {
-            background: white;
-        }
-
-        .faq-item {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5em;
-            color: var(--primary);
-        }
-
+        /* Testimonials Section */
         .testimonials {
             background: var(--light);
         }
@@ -305,69 +256,98 @@
             margin-bottom: 20px;
         }
 
-
-
-
-
-
-
-
-
-        .contact-form-container {
-            background-color: #007bff;
-            color: white;
-            padding: 40px;
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--light);
             border-radius: 10px;
-            max-width: 600px;
-            margin: 20px auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .contact-form button {
-            width: 100%;
-            padding: 15px;
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-        .contact-form button:hover {
-            background-color: #003d82;
         }
 
+        /* Footer Styles */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-content {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .promo-content, .contact-form-container {
+                width: 100%;
+                max-width: 600px;
+            }
+
+            .promo-content {
+                text-align: center;
+            }
+
+            .promo-content h1 {
+                font-size: 2.5em;
+            }
+        }
     </style>
 </head>
 <body>
-
-
-    <section class="contact" id="order-form">
-        <div class="contact-form-container" id="contact-form">
-            <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
-            <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем подберем нужную запчасть, доверьте эту работу нашим специалистам</p>
-
-            <form class="contact-form" action="mailto:player14017@gmail.com" method="POST" enctype="text/plain">
-                <input type="text" name="name" placeholder="Введите ваше имя" required>
-                <input type="tel" name="phone" placeholder="Ваш телефон" required>
-                <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
-                <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
-            </form>
-        </div>
-    </section>
-
-
-
+    <!-- Header Section -->
     <header class="header">
         <div class="slider">
             <div class="slide active"></div>
@@ -375,12 +355,31 @@
             <div class="slide"></div>
         </div>
         <div class="header-content">
-            <h1>Автозапчасти онлайн</h1>
-            <p>Ваш надежный помощник в ремонте. Найдите все необходимые автозапчасти по выгодным ценам.</p>
-            <a href="#order-form" class="cta-button">Заказать запчасти</a>
+            <div class="promo-content">
+                <h1>Автозапчасти онлайн</h1>
+                <p>Ваш надежный помощник в ремонте автомобиля</p>
+                <p>✓ <span class="highlight-text">Гарантия качества</span> на все запчасти</p>
+                <p>✓ <span class="highlight-text">Быстрый подбор</span> по VIN-коду</p>
+                <p>✓ <span class="highlight-text">Доставка</span> по всей России</p>
+                <p>✓ Работаем с <span class="highlight-text">любыми марками</span> авто</p>
+                <p style="margin-top: 30px; font-size: 1.6em;">Оставьте заявку прямо сейчас ➜</p>
+            </div>
+
+            <div class="contact-form-container">
+                <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
+                <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем и подберем нужную запчасть</p>
+
+                <form class="contact-form" action="mailto:player14017@gmail.com" method="POST" enctype="text/plain">
+                    <input type="text" name="name" placeholder="Введите ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                    <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
+                    <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
+                </form>
+            </div>
         </div>
     </header>
 
+    <!-- Services Section -->
     <section class="services">
         <div class="container">
             <div class="section-title">
@@ -406,39 +405,11 @@
         </div>
     </section>
 
-    <section class="search-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Удобные фильтры для подбора</h2>
-            </div>
-            <div class="search-grid">
-                <div class="search-item">
-                    <i class="fas fa-car-side"></i>
-                    <h3>По марке и модели</h3>
-                    <p>Выберите из списка популярных марок и моделей.</p>
-                </div>
-                <div class="search-item">
-                    <i class="fas fa-cogs"></i>
-                    <h3>По типу запчасти</h3>
-                    <p>Выберите из списка категорий: двигатель, тормозная система, подвеска.</p>
-                </div>
-                <div class="search-item">
-                    <i class="fas fa-calendar"></i>
-                    <h3>По году выпуска</h3>
-                    <p>Выберите год выпуска вашего автомобиля для точного подбора.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
+    <!-- Portfolio Section -->
     <section class="portfolio">
         <div class="container">
             <div class="section-title">
-                <h2>Портфолио</h2>
+                <h2>Наши работы</h2>
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
@@ -454,110 +425,120 @@
         </div>
     </section>
 
-
-
+    <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>Отзывы</h2>
+                <h2>Отзывы клиентов</h2>
             </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <img src="/api/placeholder/80/80" alt="Клиент 1">
                     <h3>Иван Петров</h3>
-                    <p>"Отличная работа! Сайт превзошел все наши ожидания."</p>
+                    <p>"Отличный сервис! Быстро нашли нужную запчасть по хорошей цене."</p>
                 </div>
                 <div class="testimonial-card">
                     <img src="/api/placeholder/80/80" alt="Клиент 2">
                     <h3>Анна Иванова</h3>
-                    <p>"Профессиональный подход и креативные решения."</p>
+                    <p>"Профессиональный подход и быстрая доставка. Рекомендую!"</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FAQ Section -->
     <section class="faq">
         <div class="container">
             <div class="section-title">
-                <h2>Частые вопросы</h2>
+                <h2>Часто задаваемые вопросы</h2>
             </div>
             <div class="faq-item">
-                <h3>Сколько времени занимает разработка?</h3>
-                <p>Сроки зависят от сложности проекта, обычно от 2 недель до 2 месяцев.</p>
+                <h3>Как происходит доставка?</h3>
+                <p>Доставка осуществляется по всей России через надежные транспортные компании. Сроки доставки зависят от вашего региона.</p>
             </div>
             <div class="faq-item">
-                <h3>Какие технологии вы используете?</h3>
-                <p>Мы работаем с современным стеком технологий: React, Node.js, Python и другими.</p>
+                <h3>Есть ли гарантия на запчасти?</h3>
+                <p>Да, на все запчасти предоставляется гарантия. Срок гарантии зависит от производителя и указывается в гарантийном талоне.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Как подобрать нужную запчасть?</h3>
+                <p>Вы можете подобрать запчасть по VIN-коду автомобиля или оставить заявку нашим специалистам для помощи в подборе.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Какие способы оплаты доступны?</h3>
+                <p>Мы принимаем наличные, банковские карты, также доступна оплата по безналичному расчету для юридических лиц.</p>
             </div>
         </div>
     </section>
 
-    <section class="footer" style="background: var(--dark); color: white; padding: 60px 0;">
-    <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
-            <!-- О компании -->
-            <div class="footer-column">
-                <h3 style="font-size: 1.5em; margin-bottom: 20px;">О нас</h3>
-                <p style="margin-bottom: 20px;">Мы специализируемся на поставке качественных автозапчастей для легковых и грузовых автомобилей. Наша команда профессионалов всегда готова помочь вам с подбором необходимых деталей.</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
-                    <p><i class="fas fa-envelope"></i> info@example.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
+    <!-- Footer Section -->
+    <section class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- О компании -->
+                <div class="footer-column">
+                    <h3>О нас</h3>
+                    <p>Мы специализируемся на поставке качественных автозапчастей для легковых и грузовых автомобилей. Наша команда профессионалов всегда готова помочь вам с подбором необходимых деталей.</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                        <p><i class="fas fa-envelope"></i> info@example.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Примерная, д. 123</p>
+                    </div>
+                </div>
+
+                <!-- Время работы -->
+                <div class="footer-column">
+                    <h3>Время работы</h3>
+                    <p>Пн-Пт: 9:00 - 20:00</p>
+                    <p>Сб: 10:00 - 18:00</p>
+                    <p>Вс: выходной</p>
+                </div>
+
+                <!-- Социальные сети -->
+                <div class="footer-column">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Время работы -->
-            <div class="footer-column">
-                <h3 style="font-size: 1.5em; margin-bottom: 20px;">Время работы</h3>
-                <p>Пн-Пт: 9:00 - 20:00</p>
-                <p>Сб: 10:00 - 18:00</p>
-                <p>Вс: выходной</p>
-            </div>
-
-            <!-- Социальные сети -->
-            <div class="footer-column">
-                <h3 style="font-size: 1.5em; margin-bottom: 20px;">Мы в соцсетях</h3>
-                <div class="social-links" style="display: flex; gap: 15px;">
-                    <a href="#" style="color: white; font-size: 24px;"><i class="fab fa-vk"></i></a>
-                    <a href="#" style="color: white; font-size: 24px;"><i class="fab fa-telegram"></i></a>
-                    <a href="#" style="color: white; font-size: 24px;"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" style="color: white; font-size: 24px;"><i class="fab fa-youtube"></i></a>
-                </div>
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; 2024 Автозапчасти онлайн. Все права защищены.</p>
             </div>
         </div>
-
-        <!-- Copyright -->
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p>&copy; 2024 Автозапчасти онлайн. Все права защищены.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
 
-        showSlide(0);
-        setInterval(nextSlide, 4000);
+            showSlide(0);
+            setInterval(nextSlide, 4000);
 
-        // Smooth scroll для кнопки CTA
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            target.scrollIntoView({ behavior: 'smooth' });
+            // FAQ Interaction
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
         });
-    });
     </script>
 </body>
 </html>
