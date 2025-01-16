@@ -305,10 +305,184 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.testimonials {
+        background-color: var(--light);
+        padding: 80px 20px;
+    }
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .testimonial-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+
+    .testimonial-avatar i {
+        font-size: 24px;
+        color: white;
+    }
+
+    .testimonial-author h4 {
+        margin: 0;
+        color: var(--dark);
+        font-size: 1.1em;
+    }
+
+    .testimonial-author p {
+        margin: 5px 0 0;
+        color: var(--secondary);
+        font-size: 0.9em;
+    }
+
+    .testimonial-text {
+        color: var(--dark);
+        font-style: italic;
+        line-height: 1.6;
+    }
+
+    .testimonial-rating {
+        color: #ffd700;
+        margin-top: 15px;
+    }
+
+    /* Footer Styles */
+    .footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 20px 30px;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+
+    .footer-section h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+
+    .footer-section p {
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        opacity: 1;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 20px;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .social-links a:hover {
+        opacity: 1;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        opacity: 0.8;
+        font-size: 0.9em;
+    }
+
+
+
+
         }
     </style>
 </head>
 <body>
+
+
+    <section class="contact" id="order-form">
+        <div class="contact-form-container" id="contact-form">
+            <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
+            <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем подберем нужную запчасть, доверьте эту работу нашим специалистам</p>
+
+            <form class="contact-form" action="mailto:player14017@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Введите ваше имя" required>
+                <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
+                <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
+            </form>
+        </div>
+    </section>
+
+
+
     <header class="header">
         <div class="slider">
             <div class="slide active"></div>
@@ -321,20 +495,6 @@
             <a href="#order-form" class="cta-button">Заказать запчасти</a>
         </div>
     </header>
-
-    <section class="contact" id="order-form">
-        <div class="contact-form-container" id="contact-form">
-            <h2 style="margin-bottom: 20px; text-align: center;">Дайдем запчасти за вас!</h2>
-            <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от лишних забот — мы подберем нужные запчасти за вас. Позвольте нам взять эту работу на себя!</p>
-
-            <form class="contact-form" action="mailto:player14017@gmail.com" method="POST" enctype="text/plain">
-                <input type="text" name="name" placeholder="Введите ваше имя" required>
-                <input type="tel" name="phone" placeholder="Ваш телефон" required>
-                <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
-                <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
-            </form>
-        </div>
-    </section>
 
     <section class="services">
         <div class="container">
@@ -385,6 +545,124 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+    <!-- Keep your existing script -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>Отзывы наших клиентов</h2>
+            <p>Что говорят о нас те, кто уже воспользовался нашими услугами</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Александр Петров</h4>
+                        <p>Владелец Toyota Camry</p>
+                    </div>
+                </div>
+                <p class="testimonial-text">
+                    "Отличный сервис! Быстро нашли редкую деталь для моей Камри. Цены адекватные, доставка быстрая. Очень доволен качеством обслуживания."
+                </p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Елена Сидорова</h4>
+                        <p>Владелец Volkswagen Polo</p>
+                    </div>
+                </div>
+                <p class="testimonial-text">
+                    "Спасибо за профессиональную помощь в подборе запчастей! Менеджер помог сэкономить, посоветовав качественный аналог. Буду обращаться еще."
+                </p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Михаил Иванов</h4>
+                        <p>Владелец BMW X5</p>
+                    </div>
+                </div>
+                <p class="testimonial-text">
+                    "Заказывал запчасти для БМВ. Все пришло в оригинальной упаковке, точно в срок. Порадовала грамотная консультация и помощь в подборе."
+                </p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>О компании</h3>
+            <p>Мы специализируемся на поставке качественных автозапчастей для всех марок автомобилей. Наша цель - сделать ремонт вашего автомобиля быстрым и доступным.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Контакты</h3>
+            <p><i class="fas fa-phone"></i> +7 (999) 999-99-99</p>
+            <p><i class="fas fa-envelope"></i> info@avtozapchasti.ru</p>
+            <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Автомобильная, 1</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Полезные ссылки</h3>
+            <ul class="footer-links">
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Доставка</a></li>
+                <li><a href="#">Оплата</a></li>
+                <li><a href="#">Гарантии</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Автозапчасти онлайн. Все права защищены.</p>
+    </div>
+</footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
