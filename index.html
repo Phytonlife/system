@@ -3,40 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автозапчасти онлайн | Ваш надежный помощник в ремонте</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>WebCraft Studio - Создание премиальных сайтов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'system-ui', sans-serif;
         }
 
         :root {
             --primary: #2563eb;
-            --secondary: #4f46e5;
-            --light: #f8fafc;
-            --dark: #1e293b;
+            --secondary: #1e40af;
+            --text: #1f2937;
+            --light: #f3f4f6;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
             line-height: 1.6;
-            color: var(--dark);
         }
 
-        /* Header Styles */
         .header {
+            background-color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Обновленный Hero с слайдером */
+        .hero {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 1rem;
             color: white;
             overflow: hidden;
         }
 
-        .slider {
+        .hero-slides {
             position: absolute;
             top: 0;
             left: 0;
@@ -45,7 +78,7 @@
             z-index: 1;
         }
 
-        .slide {
+        .hero-slide {
             position: absolute;
             top: 0;
             left: 0;
@@ -58,1094 +91,452 @@
             background-repeat: no-repeat;
         }
 
-        .slide.active {
+        .hero-slide.active {
             opacity: 1;
         }
 
-        .slide::before {
+        .hero-slide::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
         }
 
-        .slide:nth-child(1) {
-            background-image: url('https://uralavtogid.ru/wp-content/uploads/2021/02/d12af5cee03b3b3231b219d4b15f0ae5.jpg');
-        }
-
-        .slide:nth-child(2) {
-            background-image: url('https://i.pinimg.com/originals/41/7d/ce/417dce18fd4942d1ac4e4dd709cd6653.jpg');
-        }
-
-        .slide:nth-child(3) {
-            background-image: url('https://img.goodfon.ru/original/1920x1080/5/4b/mercedes-benz-300-slr-fabian.jpg');
-        }
-
-        .header-content {
+        .hero-content {
             position: relative;
             z-index: 2;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            gap: 20px;
-        }
-
-        .promo-content {
-            flex: 1;
-            padding: 40px;
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        .promo-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .promo-content p {
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .highlight-text {
-            color: #ffd700;
-            font-weight: 600;
-        }
-
-        /* Contact Form Styles */
-        .contact-form-container {
-            flex: 1;
-            background-color: rgba(0, 123, 255, 0.9);
-            color: white;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            animation: fadeInRight 1s ease-out;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 15px;
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background-color: #003d82;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 80px 20px;
-        }
-
-        .container {
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .services {
+            padding: 6rem 1rem;
+            background: var(--light);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5em;
-            color: var(--primary);
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--light);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .service-card {
             background: white;
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        .service-card img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
         }
 
-        .service-card i {
-            font-size: 2.5em;
-            color: var(--primary);
-            margin-bottom: 20px;
+        .portfolio {
+            padding: 6rem 1rem;
         }
 
-        /* Auto Parts Categories Section */
-        .parts-section {
-            background: white;
-            padding: 80px 20px;
-        }
-
-        .parts-container {
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .parts-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .parts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .part-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .part-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .part-title {
-            color: var(--primary);
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .part-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1rem 0;
-        }
-
-        .part-list li {
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
+        .portfolio-item {
             position: relative;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        .part-list li::before {
-            content: "•";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-        }
-
-        .find-part-btn {
-            display: block;
+        .portfolio-item img {
             width: 100%;
-            padding: 0.8rem;
-            margin-top: auto;
-            background-color: var(--primary);
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            height: 250px;
+            object-fit: cover;
         }
 
-        .find-part-btn:hover {
-            background-color: var(--secondary);
-        }
-
-        /* Testimonials Section */
-        .testimonials {
+        .process {
+            padding: 6rem 1rem;
             background: var(--light);
         }
 
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--primary);
+        }
+
+        .testimonials {
+            padding: 6rem 1rem;
         }
 
         .testimonial-card {
             background: white;
-            padding: 30px;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .testimonial-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-
-        /* FAQ Section */
-        .faq-item {
-            margin-bottom: 20px;
-            padding: 20px;
+        .contact {
+            padding: 6rem 1rem;
             background: var(--light);
-            border-radius: 10px;
-            cursor: pointer;
         }
 
-        /* Footer Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
         .footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0;
-        }
+    background: var(--text);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+}
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
 
-        .footer-column h3 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
+.social-icons a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
+.social-icons a:hover {
+    opacity: 0.8;
+}
 
-        .social-links a {
-            color: white;
-            font-size: 24px;
-            text-decoration: none;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .header-content {
-                flex-direction: column;
-                padding: 20px;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .promo-content, .contact-form-container {
-                width: 100%;
-                max-width: 600px;
+            .nav-links {
+                display: none;
             }
-
-            .promo-content {
-                text-align: center;
-            }
-
-            .promo-content h1 {
-                font-size: 2.5em;
-            }
-
-
-
-
-
-
-
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header class="header">
-        <div class="slider">
-            <div class="slide active"></div>
-            <div class="slide"></div>
-            <div class="slide"></div>
-        </div>
-        <div class="header-content">
-            <div class="promo-content">
-                <h1>Автозапчасти онлайн</h1>
-                <p>Ваш надежный помощник в ремонте автомобиля</p>
-                <p>✓ <span class="highlight-text">Гарантия качества</span> на все запчасти</p>
-                <p>✓ <span class="highlight-text">Быстрый подбор</span> по VIN-коду</p>
-                <p>✓ <span class="highlight-text">Доставка</span> по всей России</p>
-                <p>✓ Работаем с <span class="highlight-text">любыми марками</span> авто</p>
-                <p style="margin-top: 30px; font-size: 1.6em;">Оставьте заявку прямо сейчас ➜</p>
+        <nav class="nav">
+            <div class="logo">Web Studio</div>
+            <div class="nav-links">
+                <a href="#services">Услуги</a>
+                <a href="#portfolio">Портфолио</a>
+                <a href="#process">Процесс</a>
+                <a href="#contact">Контакты</a>
             </div>
-
-            <div class="contact-form-container">
-                <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
-                <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем и подберем нужную запчасть</p>
-
-                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="fd2d4547-5e53-447d-a416-0c830c05218a">
-    <input type="text" name="name" placeholder="Введите ваше имя" required>
-    <input type="tel" name="phone" placeholder="Ваш телефон" required>
-    <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
-    <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
-</form>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Широкий выбор деталей</h2>
+    <section class="hero">
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: url('https://bboom.pro/wp-content/uploads/2021/06/Razrabotka-saitov-4-8.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://static.wixstatic.com/media/c2f1a7_2a0388baf7884ac191c0c80a4209ce98~mv2.jpg/v1/fill/w_1920,h_1080,al_c/c2f1a7_2a0388baf7884ac191c0c80a4209ce98~mv2.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://i.postimg.cc/Bv1w10WG/Group-1-2025-01-22-T114442-258.png')"></div>
+        </div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Создаем сайты, которые продают</h1>
+            <p>Премиальная веб-разработка для вашего бизнеса</p>
+            <a href="#contact" class="btn">Заказать сайт</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title" data-aos="fade-up">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://xgm.guru/files/117/278284/web-site-g50d4e37cd_640.png.160x120r.png">
+                <h3>Веб-разработка</h3>
+                <p>Создаем современные сайты с уникальным дизайном и адаптивной версткой</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-car"></i>
-                    <h3>Легковые автомобили</h3>
-                    <p>Огромный выбор деталей для всех популярных марок и моделей.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>Грузовые автомобили</h3>
-                    <p>Широкий ассортимент запчастей для коммерческого транспорта.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-search"></i>
-                    <h3>Поиск по VIN-коду</h3>
-                    <p>Найдите нужные запчасти по VIN-коду вашего автомобиля.</p>
-                </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://4.bp.blogspot.com/-Tjbmo6SY-fw/WKrvm60OxSI/AAAAAAAAAF0/8NeC9e8_hqsAfCvJISg772uSfAIIXTD5gCLcB/s320/35-coding-html.png" alt="E-commerce">
+                <h3>Интернет-магазины</h3>
+                <p>Разрабатываем функциональные магазины с удобной системой управления</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.chesscomfiles.com/uploads/v1/user/46345628.cbab2b2f.160x160o.8bfa698f0811@2x.png" alt="Landing Page">
+                <h3>Лендинги</h3>
+                <p>Создаем продающие одностраничные сайты с высокой конверсией</p>
             </div>
         </div>
     </section>
 
-    <!-- Auto Parts Categories Section -->
-    <section class="parts-section">
-        <div class="parts-container">
-            <h2 class="parts-title">БОЛЕЕ 10 000 000 НАИМЕНОВАНИЙ ЗАПЧАСТЕЙ</h2>
-
-            <div class="parts-grid">
-                <div class="part-card">
-                    <img src="https://yandex-images.clstorage.net/5ZzzN4162/7b0acaygmPU/Vi1PWFhOL2dD6mu9kKuNBoRijzAR5Lp8TwFE_OB40hiHc0gncqjRco9f9BJCnHEOBCsenpsyfSbKTSQbd0Vi0MPo3EgJS_oy0-x-v5BqzYHTMkt3B2WtOt-WUmy3rwUYU-hSrnq2CuzDAemMHU8wDIS_GMxMIufojoYiwefdqZucqc4Rl1ku4opxYPyQKA6JHO3I_0RmKDwDX1QmqCURx8emEKR2-IjmDg-hyFKKsU7IftRdC--hZhQBpsQoGO5cG6mDGtCQ6OcDdeC02OkFix6kRj2OL6v6j5LSYyMm2wjH4dTq8XrH5gOPIw2XAfZGifjSmo_orOocyKyNa5PgWVorAViX1y9uhvDgsFIoykUXa8UzDG4k-4fTXCuppxZNg-bUZH6-BeeFAe5Dm0txQY3zENHIZqTulwdpiu9ZaJBU4IyW3p7m5YP5ZnafaAiCXWNKcQ6nbnxDHt9iqaxbSIGvEab48oTtwoKiSpVLesvLMtfWzi8oal2N6MQrFKLYHqbO3BrU5WrBs2ewmOpHTZOgwvuOYqY8xp8aIaggH0SNo9BucXpELEOHqw7XS3iMhrfdV0thYaaXhuVDqh2mmtAgwhwe3yXtxrer9pHmRg0aoML0gu2kMkUfXattIRfFw6NV7rN7DuXMRylEH0z7CoZzVBuNJeKhF8gtSq_Up9Ob4A3Y31kvIMIzrzGfJwlFGyXNeQakLHhHHxysq-9Qx4ymFON3_YnsjwrpAN0NccxOtVTWD-blKdPEIkcoXeYc0iSFnZ2Yai2HeWd1kWhNTZRqRTNB7qQyC5Sc7Kus24nH7dcmtL7MJM6Jq8TWCjkERDqSGgDnK-SShWmHLBqpGhzoytbf0yKnSvMpdt-uikDVJcD_SeUhNMOX2qXtrhDMxS1Rrrz-wK9EzSPMU4h7Dc94VpZELuunFwlsAuKY6FuUKgZQ1hEg78U1I7aRaszAH6OPfAnkJzfF09Th5Y" alt="Тормозная система" class="part-image">
-                    <h3 class="part-title">ТОРМОЗНАЯ СИСТЕМА И ГИДРАВЛИКА</h3>
-                    <ul class="part-list">
-                        <li>Колодки тормозные</li>
-                        <li>Барабаны тормозные</li>
-                        <li>Датчики износа</li>
-                        <li>Суппорты тормозные</li>
-                    </ul>
-                    <button class="find-part-btn">Найти запчасть</button>
-                </div>
-
-                <div class="part-card">
-                    <img src="https://atcars.ru/images/imag_22/shassi-vaz-2104-153.jpg" alt="Подвеска" class="part-image">
-                    <h3 class="part-title">ПОДВЕСКА</h3>
-                    <ul class="part-list">
-                        <li>Амортизаторы подвески</li>
-                        <li>Втулки и с/б подвески</li>
-                        <li>Опоры амортизатора</li>
-                        <li>Ступицы колеса</li>
-                    </ul>
-                    <button class="find-part-btn">Найти запчасть</button>
-                </div>
-
-                <div class="part-card">
-                    <img src="https://avatars.mds.yandex.net/i?id=03e09f8366ada55c2ffb0fbcc5a0ba18_sr-9051313-images-thumbs&n=13" alt="Рулевое управление" class="part-image">
-                    <h3 class="part-title">РУЛЕВОЕ УПРАВЛЕНИЕ</h3>
-                    <ul class="part-list">
-                        <li>Компоненты рулевых механизмов</li>
-                        <li>Тяги рулевые</li>
-                        <li>Наконечники рулевые</li>
-                        <li>Насосы ГУР</li>
-                    </ul>
-                    <button class="find-part-btn">Найти запчасть</button>
-                </div>
-
-                <div class="part-card">
-                    <img src="https://www.barahla.net/images/photo/1/20150722/7333236/big/143754517188841800_big.jpg" alt="Двигатель" class="part-image">
-                    <h3 class="part-title">ДВИГАТЕЛЬ</h3>
-                    <ul class="part-list">
-                        <li>Сальники и кольца уплотнительные</li>
-                        <li>Крышки и пробки</li>
-                        <li>Насосы масляные</li>
-                        <li>Валы ДВС</li>
-                    </ul>
-                    <button class="find-part-btn">Найти запчасть</button>
-                </div>
-
-                <div class="part-card">
-                    <img src="https://img.claz.org/tc/400x320/hlw0u3-ABgDQAYJR0MeXRIdCwAWSltcGgtYWRhSDwkEH01SDFhHCUIBUA0UBUALUVgUA0wFXVlEUREEW1lABEJQRgYHVw" alt="Электросистемы" class="part-image">
-                    <h3 class="part-title">ЭЛЕКТРОСИСТЕМЫ</h3>
-                    <ul class="part-list">
-                        <li>Свечи зажигания</li>
-                        <li>Катушки зажигания</li>
-                        <li>Провода высоковольтные</li>
-                        <li>Генераторы</li>
-                    </ul>
-                    <button class="find-part-btn">Найти запчасть</button>
-                </div>
-
-
-
-
-
-    <div class="part-card">
-        <img src="https://www.vazbook.ru/img/vaz_1111/1860.jpg" alt="Привод ГРМ" class="part-image">
-        <h3 class="part-title">ПРИВОД ГРМ И АГРЕГАТОВ</h3>
-        <ul class="part-list">
-            <li>Клиновые ремни</li>
-            <li>Ремни ГРМ</li>
-            <li>Комплекты ремней</li>
-            <li>Комплекты цепи</li>
-            <li>Поликлиновые ремни</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
+<section id="portfolio" class="portfolio">
+    <h2 class="section-title" data-aos="fade-up">Наши работы</h2>
+    <div class="portfolio-grid">
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.postimg.cc/cL69t5rZ/askdghkalhf.png" alt="Проект 1">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://www.gotur.kz/tury/goryashchie-tury/almaty.html" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.postimg.cc/W45Q6xmd/image.png" alt="Проект 2">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="http://raspil-baza.ru/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.postimg.cc/J4CdJ1wT/asdaskhfkjashfn-as.png" alt="Проект 3">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://it-level.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.postimg.cc/k52Hmfk1/image.png" alt="Проект 1">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://xn----9sbbmbbc9bfr5a5l.xn--p1ai/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.postimg.cc/gr9zVx3d/image.png" alt="Проект 2">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://rams-saiahat.kz/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.postimg.cc/m2wZzgtx/image.png" alt="Проект 3">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://f44f.ru/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.postimg.cc/mgcM6RDx/image.png" alt="Проект 1">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://chocolife.me/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.postimg.cc/FzBzjd0Y/image.png" alt="Проект 2">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://okadzaki.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.postimg.cc/B6Znkcg8/image.png" alt="Проект 3">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://www.erketoys.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.postimg.cc/pT0LHhGs/image.png" alt="Проект 1">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://gopinball.ru/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.postimg.cc/tgsjxS2N/image.png" alt="Проект 2">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://mriyaresort.com/beauty-saloon/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.postimg.cc/QtZyd0Pt/image.png" alt="Проект 3">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://acquaparco.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.postimg.cc/yNsR6RjK/image.png" alt="Проект 1">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://trt.kz/vstrechajte-nash-novyj-ofis-prodazh-v-almaty/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.postimg.cc/3NRC8GKN/image.png" alt="Проект 2">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://lideravto.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
+        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+            <img src=https://i.postimg.cc/pXQXW669/image.png" alt="Проект 3">
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://gigantclub.kz" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="part-card">
-        <img src="https://a.allegroimg.com/s400/1158b2/d07cd7e94256abc176ef04ec96fe/UNIWERSALNY-ZESTAW-KLIMATYZACJI-12-V-24V-BUS" alt="Система кондиционирования" class="part-image">
-        <h3 class="part-title">СИСТЕМА КОНДИЦИОНИРОВАНИЯ</h3>
-        <ul class="part-list">
-            <li>Радиаторы</li>
-            <li>Вентиляторы</li>
-            <li>Термостаты</li>
-            <li>Насосы водяные</li>
-            <li>Осушители</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://frankfurt.apollo.olxcdn.com/v1/files/uj8frv5uylhe-KZ/image;s=400x0;q=50" alt="Кузовные детали" class="part-image">
-        <h3 class="part-title">КУЗОВНЫЕ ДЕТАЛИ</h3>
-        <ul class="part-list">
-            <li>Бамперы</li>
-            <li>Зеркала</li>
-            <li>Капоты</li>
-            <li>Крылья</li>
-            <li>Подкрылки, арки и брызговики</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://www.vazbook.ru/img/vaz_1111/4003.jpg" alt="Оптика" class="part-image">
-        <h3 class="part-title">ОПТИКА</h3>
-        <ul class="part-list">
-            <li>Основное освещение</li>
-            <li>Дополнительное освещение</li>
-            <li>Лампы светодиодные</li>
-            <li>Лампы ксеноновые</li>
-            <li>Лампы галогенные</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://yandex-images.clstorage.net/5ZzzN4162/7b0acajVKaV/0r7czxzYLGNHfWkuUGuIkxGhTfQDYP49j1MC6vau01tRc0mnc6uQppqLIQaDXeXbkCpfSltxvPOK2KUPoMT3hEK-GohI3KzwVGy4Kcb8mdQEo001Q-epbUsUFGvh6EPMRGOLpaWq0ejAQ-gO2QK8xUx0FVmOp-kmGJ4mie6ec5pQ5smQ1pfm58Y0pjlR7kEIGuBNd4DvZrLInFdoZO6fBUIplC-xdUWmgknkQFsIccsEMFqcD-Wl59QPYUSoEOkd1OMGVZFQYeeLP-Hwl-vIDJqoBbaL7WT7Rl6dIecoE8jEbB8se7pF4UYHY8IUCHxLhvWfF0jt5GHSyOVDpZzh1N6qRd6fVSBlCX2mt1BiTYmarI93RCNtNMVQH2BoKRuJSiSVrbb_AeZGiewG1gn6xUu7k13P6uBqEIOiza2YahsbrcEUF5wuroSz7_6Z6UiAHGpCN4bkJzxKEh2pIq7fRMltlab7-gOvg0tqSlcDvUYHsp1dxGCmq9eEpIQhHKCRmuMFWd3UZOjG-Su0mmYKyh2sRbXJK-n_wpidbOruWsUMLpQqv_YPo0KD48KXwjxDDvbfXcYn6y7dBSHKaNBqmpdkhFDZlqpuyjkvv1rhDc7R6ky5yGtg_8KXkePo4NlFS6RRK7d3QaPHAyHD3Quzg4y8F1pFoevqVEnnjuvX6tRfbYGZ2N_hrgX97jlQLAlK1S1CeIcjYXrNGhWqYKrbRQqjl-XwdQ6mhg7lRVoC8M5M-NUbz2cjLFSEZU3sXy7YUGAGEJkQqGqNuKz4FSFMAB1pTDfDK-41RVBS4Ojgl86K45emeztF7UXLJgYfyrFNDjzeHIevKaOSSGpMIpJvmRugAlfWFmamwvPus12rgYpTagLxBCavesCcWutt5l_NzKrRpLB-Ry3DQy5GE0E7CYY0W57FpqLhVsQuheLR6hUeJczVl1fuZA5153Ff4w5MWapMNUKmZfyPHxrqa8" alt="Стеклоочистители" class="part-image">
-        <h3 class="part-title">СТЕКЛООЧИСТИТЕЛИ</h3>
-        <ul class="part-list">
-            <li>Щетки стеклоочистителя</li>
-            <li>Адаптеры щеток стеклоочистителя</li>
-            <li>Резинки щеток стеклоочистителя</li>
-            <li>Комплектующие стеклоочистителя</li>
-            <li>Моторчики | двигатели</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://www.vazbook.ru/img/vaz_2109/0804.jpg" alt="Топливно-воздушная система" class="part-image">
-        <h3 class="part-title">ТОПЛИВНО-ВОЗДУШНАЯ СИСТЕМА</h3>
-        <ul class="part-list">
-            <li>Насосы топливные</li>
-            <li>Расходомеры воздуха</li>
-            <li>Форсунки</li>
-            <li>Заслонки дроссельные</li>
-            <li>Турбины | компрессоры и их части</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://i.pinimg.com/originals/c8/9f/f4/c89ff445168917dcbea9c0426e9a6055.gif" alt="Трансмиссия" class="part-image">
-        <h3 class="part-title">ТРАНСМИССИЯ</h3>
-        <ul class="part-list">
-            <li>Комплекты сцепления</li>
-            <li>Диски сцепления</li>
-            <li>Корзины сцепления</li>
-            <li>Валы приводные</li>
-            <li>Детали агрегатов трансмиссии</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://moedani.online/files/images/items/13/13026z1b48038e.jpg" alt="Остекление" class="part-image">
-        <h3 class="part-title">ОСТЕКЛЕНИЕ</h3>
-        <ul class="part-list">
-            <li>Стекла лобовые</li>
-            <li>Стекла задние</li>
-            <li>Стекла прочие</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://cdn.izap24.ru/images/prodacts/290/229936/229936910_audi-80-b3-1-6-1-8-1-9-2-0-tsentralnaya-konechnyiy.jpg" alt="Выхлопная система" class="part-image">
-        <h3 class="part-title">ВЫХЛОПНАЯ СИСТЕМА</h3>
-        <ul class="part-list">
-            <li>Глушители</li>
-            <li>Гофры</li>
-            <li>Соединения системы ОГ</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
-
-    <div class="part-card">
-        <img src="https://avatars.mds.yandex.net/i?id=5e1b94109f07515474f95e6bea6ef9d7_sr-8275014-images-thumbs&n=13" alt="Фильтры" class="part-image">
-        <h3 class="part-title">ФИЛЬТРЫ</h3>
-        <ul class="part-list">
-            <li>Фильтры масляные</li>
-            <li>Фильтры воздушные</li>
-            <li>Фильтры салона</li>
-            <li>Фильтры топливные</li>
-            <li>Фильтры АКПП | Гидравлические</li>
-        </ul>
-        <button class="find-part-btn">Найти запчасть</button>
-    </div>
+    <section id="process" class="process">
+        <h2 class="section-title" data-aos="fade-up">Как мы работаем</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <h3>1. Обсуждение проекта</h3>
+                <p>Изучаем ваши потребности и цели, предлагаем оптимальные решения</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <h3>2. Прототипирование</h3>
+                <p>Создаем прототип сайта и согласовываем структуру</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <h3>3. Дизайн</h3>
+                <p>Разрабатываем уникальный дизайн в соответствии с вашим брендом</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <h3>4. Разработка</h3>
+                <p>Верстаем и программируем функционал сайта</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <h3>5. Запуск</h3>
+                <p>Тестируем и запускаем проект</p>
             </div>
         </div>
     </section>
 
-
-
-
-    <section class="about-us">
-    <div class="about-hero" style="background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(13, 110, 253, 0.8)), url('https://avatars.mds.yandex.net/i?id=69eb74152c70b2f967b59f182f148b0f_l-4140339-images-thumbs&n=13') center/cover fixed;">
-        <div class="container">
-            <h2>О НАС</h2>
-            <p class="subtitle">Ваш надежный партнер в обслуживании автомобиля с 1998 года</p>
-        </div>
-    </div>
-
-    <div class="about-grid">
-        <div class="about-card" style="background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(13, 110, 253, 0.7)), url('https://avatars.mds.yandex.net/i?id=98d6624435e020dc4b5c7599f6181345_l-5334710-images-thumbs&n=13') center/cover;">
-            <div class="card-content">
-                <i class="fas fa-tools"></i>
-                <h3>Профессиональный ремонт</h3>
-                <p>Обеспечиваем качественный и профессиональный ремонт автомобилей любой сложности – от диагностики и ремонта двигателя до замены стекол и выполнения кузовных работ.</p>
-            </div>
-        </div>
-
-        <div class="about-card" style="background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(13, 110, 253, 0.7)), url('https://pskdom.ru/upload/medialibrary/b10/b1014fd38387ab7413323eb471115ed7.jpg') center/cover;">
-            <div class="card-content">
-                <i class="fas fa-coffee"></i>
-                <h3>Комфорт клиентов</h3>
-                <p>Пока ваш автомобиль находится в работе, вы сможете комфортно отдохнуть в нашей уютной зоне ожидания с бесплатным Wi-Fi или посетить нашу столовую.</p>
-            </div>
-        </div>
-
-        <div class="about-card" style="background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(13, 110, 253, 0.7)), url('https://metalldesign.com.ua/img/partn/im1.png') center/cover;">
-            <div class="card-content">
-                <i class="fas fa-shipping-fast"></i>
-                <h3>Доставка запчастей</h3>
-                <p>Доступна услуга доставки запчастей по всей стране. Мы отправляем заказы в течение суток после их оформления и проводим тщательную упаковку.</p>
-            </div>
-        </div>
-
-        <div class="about-card" style="background: linear-gradient(rgba(13, 110, 253, 0.7), rgba(13, 110, 253, 0.7)), url('https://atlantichighlandslocksmithstore.com/userfiles/Azure-150-39/images/100-satisfaction-guarantee11.png') center/cover;">
-            <div class="card-content">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Гарантия качества</h3>
-                <p>Используем только качественные запчасти с гарантией. Работаем напрямую с поставщиками из Европы и Китая, предлагая как оригинальные, так и аналоговые запчасти.</p>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .about-us {
-            position: relative;
-            background: #ffffff;
-        }
-
-        .about-hero {
-            padding: 100px 0;
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
-        }
-
-        .about-hero h2 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .about-hero .subtitle {
-            font-size: 1.5em;
-            opacity: 0.9;
-            color: #ffffff;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            padding: 0 5%;
-            margin-bottom: 60px;
-        }
-
-        .about-card {
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease;
-            border: 2px solid #0D6EFD;
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.2);
-        }
-
-        .card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px;
-            color: white;
-            background: linear-gradient(transparent, rgba(13, 110, 253, 0.9));
-        }
-
-        .card-content i {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .card-content h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .card-content p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0.9;
-            color: #ffffff;
-        }
-
-        @media (max-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-hero h2 {
-                font-size: 2.5em;
-            }
-
-            .about-hero .subtitle {
-                font-size: 1.2em;
-            }
-
-            .about-card {
-                height: 300px;
-            }
-        }
-    </style>
-</section>
-</section>
-
-
-    <!-- Testimonials Section -->
     <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Отзывы клиентов</h2>
+    <h2 class="section-title" data-aos="fade-up">Отзывы клиентов</h2>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Отличная команда профессионалов! Сделали сайт точно в срок и даже лучше, чем мы ожидали."</p>
+        <strong>- Анна Петрова, CEO StartUp</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Благодаря новому сайту наши продажи выросли на 150%. Спасибо за качественную работу!"</p>
+        <strong>- Иван Смирнов, DirectSales</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Мы долго искали компанию, которая сможет реализовать наш сложный проект. Результат превзошел все ожидания. Сайт работает безупречно и привлекает новых клиентов."</p>
+        <strong>- Айнур Тулегенова, Директор Asian Market</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Профессиональный подход на всех этапах разработки. Особенно впечатлила скорость работы и внимание к деталям. Рекомендую!"</p>
+        <strong>- Бауржан Сатпаев, Основатель TechWorld</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Команда разработчиков создала именно такой сайт, какой мы хотели. Современный дизайн, удобная админ-панель, отличная мобильная версия."</p>
+        <strong>- Елена Воробьева, Marketing Director</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Сайт полностью соответствует всем современным требованиям. Отдельное спасибо за оптимизацию под поисковые системы!"</p>
+        <strong>- Нурлан Касымов, CEO Digital Solutions</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Великолепная работа по редизайну нашего интернет-магазина. Конверсия выросла на 80% за первый месяц."</p>
+        <strong>- Динара Алимова, E-commerce Manager</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Благодарим за создание корпоративного портала. Все функции работают отлично, а интерфейс интуитивно понятен."</p>
+        <strong>- Сергей Новиков, HR Director</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Отличное соотношение цены и качества. Получили современный сайт с адаптивным дизайном и всеми необходимыми функциями."</p>
+        <strong>- Асель Мухтарова, Business Development Manager</strong>
+    </div>
+    <div class="testimonial-card" data-aos="fade-up">
+        <p>"Профессиональный подход к созданию нашего корпоративного сайта. Все пожелания были учтены, а результат превзошел ожидания."</p>
+        <strong>- Марат Жумабаев, General Manager</strong>
+    </div>
+</section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title" data-aos="fade-up">Связаться с нами</h2>
+        <form class="contact-form" data-aos="fade-up">
+            <div class="form-group">
+                <input type="text" placeholder="Ваше имя">
             </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <img src="https://2.gravatar.com/avatar/74aabc0fa95f77120347ac31237775f687fc320138ea0872cb40d2f450d0ca77" alt="Клиент 1">
-                    <h3>Иван Петров</h3>
-                    <p>"Отличный сервис! Быстро нашли нужную запчасть по хорошей цене."</p>
-                </div>
-                <div class="testimonial-card">
-                    <img src="https://static.sutochno.ru/doc/files/users/5/835/417/small/62c45396f0ec0.jpg" alt="Клиент 2">
-                    <h3>Анна Иванова</h3>
-                    <p>"Профессиональный подход и быстрая доставка. Рекомендую!"</p>
-                </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email">
             </div>
-        </div>
+            <div class="form-group">
+                <textarea placeholder="Ваше сообщение" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
     </section>
 
-
-
-
-
-
-<!-- Brand Partners Section -->
-<section class="brand-partners" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 80px 0;">
-    <div class="container">
-        <h2 style="text-align: center; font-size: 2.5em; color: #1e40af; margin-bottom: 60px; font-weight: 700; text-transform: uppercase;">
-            СОТРУДНИЧАЕМ С МИРОВЫМИ ЛИДЕРАМИ АВТОМОБИЛЬНОЙ ОТРАСЛИ
-        </h2>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; justify-items: center; align-items: center;">
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/alfa-romeo.jpg" alt="Alfa Romeo" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/aston-martin.jpg" alt="Aston Martin" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/audi.jpg" alt="Audi" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/bentley.jpg" alt="Bentley" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/BMW.jpg" alt="BMW" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/bugatti.jpg" alt="Bugatti" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/genesis.jpg" alt="Genesis" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/infiniti.jpg" alt="Infiniti" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/jaguar.jpg" alt="Jaguar" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/lexus.jpg" alt="Lexus" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/maserati.jpg" alt="Maserati" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/maybach.jpg" alt="Maybach" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/mercedes-benz.jpg" alt="Mercedes-Benz" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/rolls-royce.jpg" alt="Rolls-Royce" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="brand-logo" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                <img src="https://zapchasti-torg.ru/wp-content/uploads/2024/11/volvo.jpg" alt="Volvo" style="max-width: 100%; height: auto;">
-            </div>
-        </div>
+    <footer class="footer">
+    <div class="contact-info">
+        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
     </div>
-
-    <style>
-        .brand-logo:hover {
-            transform: translateY(-5px);
-        }
-
-        @media (max-width: 768px) {
-            .brand-partners h2 {
-                font-size: 1.8em;
-                padding: 0 20px;
-            }
-
-            .brand-logo {
-                width: 160px;
-                height: 100px;
-            }
-        }
-    </style>
-</section>
-
-
-
-
-
-
-
- <section class="warranty-info-section">
-    <h2 class="main-title">Гарантии и возврат</h2>
-
-    <div class="cards-grid">
-        <div class="warranty-card">
-            <i class="fas fa-award"></i>
-            <h3>Гарантия на новые запчасти</h3>
-            <p>На новые запчасти-аналоги предоставляется гарантия сроком 3 месяца, а на оригинальные – 6 месяцев. Гарантия предоставляется от поставщика, подтверждая высокое качество и соответствие техническим стандартам.</p>
-        </div>
-
-        <div class="warranty-card">
-            <i class="fas fa-wrench"></i>
-            <h3>Гарантия на установку</h3>
-            <p>На все устанавливаемые запчасти, кроме кузовных элементов, распространяется наша гарантия. Для Б/У запчастей условия зависят от пробега и состояния автомобиля донора, что уточняется при установке или заказе с доставкой.</p>
-        </div>
-
-        <div class="warranty-card">
-            <i class="fas fa-undo"></i>
-            <h3>Условия возврата</h3>
-            <p>Возврат возможен в течение 14 дней с момента получения или самовывоза, при сохранении оригинальной упаковки, товарного вида и наличии документа о покупке. При обнаружении заводского дефекта гарантируем замену или возврат средств.</p>
-        </div>
-
-        <div class="warranty-card">
-            <i class="fas fa-headset"></i>
-            <h3>Поддержка клиентов</h3>
-            <p>Если у вас есть вопросы по возврату, наши менеджеры всегда готовы помочь и предложить решение. Мы заботимся о вашем удобстве и качестве обслуживания!</p>
-        </div>
+    <div class="social-icons">
+        <a href="https://t.me/your_username" target="_blank" aria-label="Telegram">
+            <i class="fab fa-telegram fa-2x"></i>
+        </a>
+        <a href="https://instagram.com/your_username" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram fa-2x"></i>
+        </a>
     </div>
-
-    <style>
-        .warranty-info-section {
-            padding: 60px 5%;
-            background: #ffffff;
-        }
-
-        .main-title {
-            text-align: center;
-            color: #0D6EFD;
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 50px;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .warranty-card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid #e0e0e0;
-        }
-
-        .warranty-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.1);
-        }
-
-        .warranty-card i {
-            font-size: 2.5em;
-            color: #0D6EFD;
-            margin-bottom: 20px;
-        }
-
-        .warranty-card h3 {
-            color: #333;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .warranty-card p {
-            color: #666;
-            font-size: 1.1em;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        @media (max-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2em;
-            }
-
-            .warranty-card {
-                padding: 20px;
-            }
-        }
-    </style>
-</section>
-
-
-
-
-    <!-- FAQ Section -->
-<!--    <section class="faq">-->
-<!--        <div class="container">-->
-<!--            <div class="section-title">-->
-<!--                <h2>Часто задаваемые вопросы</h2>-->
-<!--            </div>-->
-<!--            <div class="faq-item">-->
-<!--                <h3>Как происходит доставка?</h3>-->
-<!--                <p>Доставка осуществляется по всей России через надежные транспортные компании. Сроки доставки зависят от вашего региона.</p>-->
-<!--            </div>-->
-<!--            <div class="faq-item">-->
-<!--                <h3>Есть ли гарантия на запчасти?</h3>-->
-<!--                <p>Да, на все запчасти предоставляется гарантия. Срок гарантии зависит от производителя и указывается в гарантийном талоне.</p>-->
-<!--            </div>-->
-<!--            <div class="faq-item">-->
-<!--                <h3>Как подобрать нужную запчасть?</h3>-->
-<!--                <p>Вы можете подобрать запчасть по VIN-коду автомобиля или оставить заявку нашим специалистам для помощи в подборе.</p>-->
-<!--            </div>-->
-<!--            <div class="faq-item">-->
-<!--                <h3>Какие способы оплаты доступны?</h3>-->
-<!--                <p>Мы принимаем наличные, банковские карты, также доступна оплата по безналичному расчету для юридических лиц.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-
-
-    <section style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 80px 20px;">
-    <div style="max-width: 500px; margin: 0 auto;">
-        <div class="contact-form-container" style="width: 100%;">
-            <h2 style="margin-bottom: 20px; text-align: center;">НЕ МОЖЕТЕ НАЙТИ НУЖНУЮ ЗАПЧАСТЬ?</h2>
-            <p style="margin-bottom: 20px; text-align: center;">Избавьте себя от рутины, мы за вас найдем и подберем нужную запчасть</p>
-
-            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="fd2d4547-5e53-447d-a416-0c830c05218a">
-    <input type="text" name="name" placeholder="Введите ваше имя" required>
-    <input type="tel" name="phone" placeholder="Ваш телефон" required>
-    <textarea name="message" placeholder="Какая запчасть? Год, марка, модель, год выпуска авто" rows="4" required></textarea>
-    <button type="submit">ЗАКАЗАТЬ ЗАПЧАСТЬ</button>
-</form>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-    <!-- Footer Section -->
-
-<!-- [Previous HTML code remains the same until the footer section] -->
-
-    <section class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>О нас</h3>
-                    <p>ООО "ПЕНЗАТРАКСЕРВИС" - надежный автосервис в г. Пенза, расположенный на ул. Сумская, д. 23! Мы работаем с 1998 года, обеспечиваем качественный и профессиональный ремонт автомобилей любой сложности – от диагностики и ремонта двигателя до замены стекол и выполнения кузовных работ.</p>
-                    <p>Пока ваш автомобиль находится в работе, вы сможете комфортно отдохнуть в нашей уютной зоне ожидания с бесплатным Wi-Fi или посетить нашу столовую.</p>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> +7 (8412) 90-98-72</p>
-                        <p><i class="fas fa-map-marker-alt"></i> 440015, г. Пенза, ул. Сумская, д. 23</p>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Время работы</h3>
-                    <p>Пн-Пт: 9:00 - 20:00</p>
-                    <p>Сб: 10:00 - 18:00</p>
-                    <p>Вс: выходной</p>
-
-                    <h3 style="margin-top: 20px;">Гарантия</h3>
-                    <p>Новые запчасти-аналоги: 3 месяца</p>
-                    <p>Оригинальные запчасти: 6 месяцев</p>
-                    <p>Возврат в течение 14 дней</p>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Реквизиты компании</h3>
-                    <p>ООО "ПЕНЗАТРАКСЕРВИС"</p>
-                    <p>ИНН: 5835111616</p>
-                    <p>КПП: 583501001</p>
-                    <p>ОГРН: 1155835001431</p>
-                    <p>ОКПО: 24038510</p>
-
-                    <h3 style="margin-top: 20px;">Мы в соцсетях</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-vk"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="copyright">
-                <p>&copy; 2024 ООО "ПЕНЗАТРАКСЕРВИС". Все права защищены.</p>
-            </div>
-        </div>
-    </section>
-
-<!-- [Rest of the HTML code remains the same] -->
+</footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.slide');
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        function initSlideshow() {
+            const slides = document.querySelectorAll('.hero-slide');
             let currentSlide = 0;
 
             function showSlide(index) {
@@ -1158,68 +549,10 @@
                 showSlide(currentSlide);
             }
 
-            showSlide(0);
-            setInterval(nextSlide, 4000);
+            setInterval(nextSlide, 5000);
+        }
 
-            // FAQ Interaction
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    item.classList.toggle('active');
-                });
-            });
-        });
+        document.addEventListener('DOMContentLoaded', initSlideshow);
     </script>
-
-
-
-<script>
-async function submitForm(e, form) {
-    e.preventDefault();
-
-    const button = form.querySelector('button');
-    const originalText = button.textContent;
-    button.textContent = 'Отправка...';
-    button.disabled = true;
-
-    const formData = new FormData(form);
-    const data = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        message: formData.get('message')
-    };
-
-    try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzk15P_qvh_Hy2uALK33acHbgX2q45eEkdsq0fXQh-caqOtGM5RKKucL7Zl7pZAMxSk/exec', { // Замените на вашу ссылку
-            method: 'POST',
-            mode: 'no-cors',
-            body: new URLSearchParams(data)
-        });
-
-        // Показываем сообщение об успехе
-        alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-        form.reset();
-    } catch (error) {
-        alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
-    } finally {
-        button.textContent = originalText;
-        button.disabled = false;
-    }
-}
-
-// Добавляем маску для телефона
-document.addEventListener('DOMContentLoaded', function() {
-    const phoneInputs = document.querySelectorAll('input[type="tel"]');
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g, '')
-                .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,4})/);
-            e.target.value = !x[2] ? x[1] : '+7 (' + x[2] + ') ' + (x[3] ? x[3] + '-' : '') + (x[4] ? x[4] : '');
-        });
-    });
-});
-</script>
-
-
 </body>
 </html>
