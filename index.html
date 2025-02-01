@@ -3,556 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebCraft Studio - Создание премиальных сайтов</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>NeuroBot - Умный Telegram-бот на нейросетях</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'system-ui', sans-serif;
+        .gradient-bg {
+            background: linear-gradient(to bottom, #1a202c, #1e3a8a);
         }
-
-        :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --text: #1f2937;
-            --light: #f3f4f6;
+        .card-hover {
+            transition: transform 0.3s ease;
         }
-
-        body {
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .header {
-            background-color: white;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .nav-links a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        /* Обновленный Hero с слайдером */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 6rem 1rem;
-            color: white;
-            overflow: hidden;
-        }
-
-        .hero-slides {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-
-        .services {
-            padding: 6rem 1rem;
-            background: var(--light);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .service-card img {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio {
-            padding: 6rem 1rem;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .process {
-            padding: 6rem 1rem;
-            background: var(--light);
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-            padding-left: 2rem;
-            border-left: 2px solid var(--primary);
-        }
-
-        .testimonials {
-            padding: 6rem 1rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact {
-            padding: 6rem 1rem;
-            background: var(--light);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .footer {
-    background: var(--text);
-    color: white;
-    padding: 3rem 1rem;
-    text-align: center;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1rem;
-}
-
-.social-icons a {
-    color: white;
-    text-decoration: none;
-    transition: opacity 0.3s;
-}
-
-.social-icons a:hover {
-    opacity: 0.8;
-}
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
+        .card-hover:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
-<body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">Web Studio</div>
-            <div class="nav-links">
-                <a href="#services">Услуги</a>
-                <a href="#portfolio">Портфолио</a>
-                <a href="#process">Процесс</a>
-                <a href="#contact">Контакты</a>
+<body class="min-h-screen gradient-bg text-white">
+    <!-- Header -->
+    <header class="fixed w-full bg-gray-900 bg-opacity-90 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">NeuroBot</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-blue-400">О боте</a>
+                    <a href="#start" class="hover:text-blue-400">Как начать</a>
+                    <a href="#reviews" class="hover:text-blue-400">Отзывы</a>
+                    <a href="#contacts" class="hover:text-blue-400">Контакты</a>
+                </div>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-slides">
-            <div class="hero-slide active" style="background-image: url('https://bboom.pro/wp-content/uploads/2021/06/Razrabotka-saitov-4-8.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('https://static.wixstatic.com/media/c2f1a7_2a0388baf7884ac191c0c80a4209ce98~mv2.jpg/v1/fill/w_1920,h_1080,al_c/c2f1a7_2a0388baf7884ac191c0c80a4209ce98~mv2.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('https://i.postimg.cc/Bv1w10WG/Group-1-2025-01-22-T114442-258.png')"></div>
-        </div>
-        <div class="hero-content" data-aos="fade-up">
-            <h1>Создаем сайты, которые продают</h1>
-            <p>Премиальная веб-разработка для вашего бизнеса</p>
-            <a href="#contact" class="btn">Заказать сайт</a>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <h2 class="section-title" data-aos="fade-up">Наши услуги</h2>
-        <div class="services-grid">
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://xgm.guru/files/117/278284/web-site-g50d4e37cd_640.png.160x120r.png">
-                <h3>Веб-разработка</h3>
-                <p>Создаем современные сайты с уникальным дизайном и адаптивной версткой</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://4.bp.blogspot.com/-Tjbmo6SY-fw/WKrvm60OxSI/AAAAAAAAAF0/8NeC9e8_hqsAfCvJISg772uSfAIIXTD5gCLcB/s320/35-coding-html.png" alt="E-commerce">
-                <h3>Интернет-магазины</h3>
-                <p>Разрабатываем функциональные магазины с удобной системой управления</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="https://images.chesscomfiles.com/uploads/v1/user/46345628.cbab2b2f.160x160o.8bfa698f0811@2x.png" alt="Landing Page">
-                <h3>Лендинги</h3>
-                <p>Создаем продающие одностраничные сайты с высокой конверсией</p>
-            </div>
+    <!-- Hero Section -->
+    <section class="pt-24 pb-20 px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                Умный Telegram-бот на нейросетях
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300">
+                Используйте силу искусственного интеллекта для решения ваших задач
+            </p>
+            <a href="https://t.me/your_bot_username" 
+               class="inline-flex items-center px-8 py-4 bg-blue-600 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
+                Запустить бота в Telegram
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
     </section>
 
-<section id="portfolio" class="portfolio">
-    <h2 class="section-title" data-aos="fade-up">Наши работы</h2>
-    <div class="portfolio-grid">
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://i.postimg.cc/cL69t5rZ/askdghkalhf.png" alt="Проект 1">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://www.gotur.kz/tury/goryashchie-tury/almaty.html" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://i.postimg.cc/W45Q6xmd/image.png" alt="Проект 2">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="http://raspil-baza.ru/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://i.postimg.cc/J4CdJ1wT/asdaskhfkjashfn-as.png" alt="Проект 3">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://it-level.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://i.postimg.cc/k52Hmfk1/image.png" alt="Проект 1">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://xn----9sbbmbbc9bfr5a5l.xn--p1ai/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://i.postimg.cc/gr9zVx3d/image.png" alt="Проект 2">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://rams-saiahat.kz/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://i.postimg.cc/m2wZzgtx/image.png" alt="Проект 3">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://f44f.ru/?ref=https://referest.ru/sites/vse" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://i.postimg.cc/mgcM6RDx/image.png" alt="Проект 1">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://chocolife.me/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://i.postimg.cc/FzBzjd0Y/image.png" alt="Проект 2">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://okadzaki.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://i.postimg.cc/B6Znkcg8/image.png" alt="Проект 3">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://www.erketoys.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://i.postimg.cc/pT0LHhGs/image.png" alt="Проект 1">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://gopinball.ru/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://i.postimg.cc/tgsjxS2N/image.png" alt="Проект 2">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://mriyaresort.com/beauty-saloon/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://i.postimg.cc/QtZyd0Pt/image.png" alt="Проект 3">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://acquaparco.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://i.postimg.cc/yNsR6RjK/image.png" alt="Проект 1">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://trt.kz/vstrechajte-nash-novyj-ofis-prodazh-v-almaty/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://i.postimg.cc/3NRC8GKN/image.png" alt="Проект 2">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://lideravto.kz/" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-        <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-            <img src=https://i.postimg.cc/pXQXW669/image.png" alt="Проект 3">
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="https://gigantclub.kz" class="btn" style="background-color: var(--primary); color: white;">Подробнее о проекте</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <section id="process" class="process">
-        <h2 class="section-title" data-aos="fade-up">Как мы работаем</h2>
-        <div class="timeline">
-            <div class="timeline-item" data-aos="fade-up">
-                <h3>1. Обсуждение проекта</h3>
-                <p>Изучаем ваши потребности и цели, предлагаем оптимальные решения</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-up">
-                <h3>2. Прототипирование</h3>
-                <p>Создаем прототип сайта и согласовываем структуру</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-up">
-                <h3>3. Дизайн</h3>
-                <p>Разрабатываем уникальный дизайн в соответствии с вашим брендом</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-up">
-                <h3>4. Разработка</h3>
-                <p>Верстаем и программируем функционал сайта</p>
-            </div>
-            <div class="timeline-item" data-aos="fade-up">
-                <h3>5. Запуск</h3>
-                <p>Тестируем и запускаем проект</p>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">О боте</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Функции</h3>
+                    <ul class="space-y-2">
+                        <li>• Анализ данных с помощью нейросетей</li>
+                        <li>• Обработка естественного языка</li>
+                        <li>• Генерация контента</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Преимущества</h3>
+                    <ul class="space-y-2">
+                        <li>• Мгновенная обработка запросов</li>
+                        <li>• Доступность 24/7</li>
+                        <li>• Простой интерфейс</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Технологии</h3>
+                    <ul class="space-y-2">
+                        <li>• Современные нейронные сети</li>
+                        <li>• Машинное обучение</li>
+                        <li>• API Telegram</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
-    <h2 class="section-title" data-aos="fade-up">Отзывы клиентов</h2>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Отличная команда профессионалов! Сделали сайт точно в срок и даже лучше, чем мы ожидали."</p>
-        <strong>- Анна Петрова, CEO StartUp</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Благодаря новому сайту наши продажи выросли на 150%. Спасибо за качественную работу!"</p>
-        <strong>- Иван Смирнов, DirectSales</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Мы долго искали компанию, которая сможет реализовать наш сложный проект. Результат превзошел все ожидания. Сайт работает безупречно и привлекает новых клиентов."</p>
-        <strong>- Айнур Тулегенова, Директор Asian Market</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Профессиональный подход на всех этапах разработки. Особенно впечатлила скорость работы и внимание к деталям. Рекомендую!"</p>
-        <strong>- Бауржан Сатпаев, Основатель TechWorld</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Команда разработчиков создала именно такой сайт, какой мы хотели. Современный дизайн, удобная админ-панель, отличная мобильная версия."</p>
-        <strong>- Елена Воробьева, Marketing Director</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Сайт полностью соответствует всем современным требованиям. Отдельное спасибо за оптимизацию под поисковые системы!"</p>
-        <strong>- Нурлан Касымов, CEO Digital Solutions</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Великолепная работа по редизайну нашего интернет-магазина. Конверсия выросла на 80% за первый месяц."</p>
-        <strong>- Динара Алимова, E-commerce Manager</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Благодарим за создание корпоративного портала. Все функции работают отлично, а интерфейс интуитивно понятен."</p>
-        <strong>- Сергей Новиков, HR Director</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Отличное соотношение цены и качества. Получили современный сайт с адаптивным дизайном и всеми необходимыми функциями."</p>
-        <strong>- Асель Мухтарова, Business Development Manager</strong>
-    </div>
-    <div class="testimonial-card" data-aos="fade-up">
-        <p>"Профессиональный подход к созданию нашего корпоративного сайта. Все пожелания были учтены, а результат превзошел ожидания."</p>
-        <strong>- Марат Жумабаев, General Manager</strong>
-    </div>
-</section>
-
-    <section id="contact" class="contact">
-        <h2 class="section-title" data-aos="fade-up">Связаться с нами</h2>
-        <form class="contact-form" data-aos="fade-up">
-            <div class="form-group">
-                <input type="text" placeholder="Ваше имя">
+    <!-- How to Start Section -->
+    <section id="start" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Как начать</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center card-hover">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Установите Telegram</h3>
+                    <p class="text-gray-300">Скачайте приложение Telegram на ваше устройство</p>
+                </div>
+                <div class="text-center card-hover">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Запустите бота</h3>
+                    <p class="text-gray-300">Перейдите по ссылке и нажмите "Старт"</p>
+                </div>
+                <div class="text-center card-hover">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Начните общение</h3>
+                    <p class="text-gray-300">Отправьте боту свой первый запрос</p>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Ваше сообщение" rows="5"></textarea>
-            </div>
-            <button type="submit" class="btn">Отправить</button>
-        </form>
+        </div>
     </section>
 
-    <footer class="footer">
-    <div class="contact-info">
-        <p>Телефон: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-    </div>
-    <div class="social-icons">
-        <a href="https://t.me/your_username" target="_blank" aria-label="Telegram">
-            <i class="fab fa-telegram fa-2x"></i>
-        </a>
-        <a href="https://instagram.com/your_username" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram fa-2x"></i>
-        </a>
-    </div>
-</footer>
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-gray-800 bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Отзывы</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="mb-4">"Отличный бот! Помогает мне в ежедневной работе с данными."</p>
+                    <p class="font-semibold">- Александр К.</p>
+                </div>
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="mb-4">"Быстрые ответы и точные результаты. Рекомендую!"</p>
+                    <p class="font-semibold">- Мария С.</p>
+                </div>
+                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg card-hover">
+                    <div class="flex text-yellow-400 mb-4">
+                        ★★★★★
+                    </div>
+                    <p class="mb-4">"Удобный интерфейс и широкий функционал. Супер!"</p>
+                    <p class="font-semibold">- Дмитрий В.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+    <!-- Contact Section -->
+    <section id="contacts" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Контакты</h2>
+            <div class="max-w-lg mx-auto">
+                <div class="bg-gray-700 bg-opacity-50 p-8 rounded-lg">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block mb-2">Имя</label>
+                            <input type="text" 
+                                   class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block mb-2">Email</label>
+                            <input type="email" 
+                                   class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block mb-2">Сообщение</label>
+                            <textarea class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                                      rows="4"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full px-6 py-3 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Отправить
+                        </button>
+                    </form>
+                    <div class="mt-8 text-center">
+                        <a href="mailto:contact@example.com" class="hover:text-blue-400">
+                            contact@example.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function initSlideshow() {
-            const slides = document.querySelectorAll('.hero-slide');
-            let currentSlide = 0;
-
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                slides[index].classList.add('active');
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-
-            setInterval(nextSlide, 5000);
-        }
-
-        document.addEventListener('DOMContentLoaded', initSlideshow);
-    </script>
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 mb-4 md:mb-0">
+                    © 2024 NeuroBot. Все права защищены.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/privacy" class="text-gray-400 hover:text-white">Политика конфиденциальности</a>
+                    <a href="/terms" class="text-gray-400 hover:text-white">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
