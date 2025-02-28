@@ -5,805 +5,312 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Система документооборота</title>
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #ddd;
+            --success-color: #2ecc71;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: var(--light-gray);
+            color: var(--text-color);
             line-height: 1.6;
         }
-
+        
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
-
-        /* Хедер */
+        
         header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 0;
+            background-color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
         }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        
         .logo {
             font-size: 24px;
             font-weight: bold;
+            color: var(--primary-color);
         }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-role {
-            background-color: #3498db;
+        
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(to right, #3498db, #2980b9);
             color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            margin-right: 15px;
         }
-
-        .logout-btn {
-            background-color: transparent;
-            border: 1px solid white;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Основной контент */
-        main {
-            padding: 30px 0;
-        }
-
-        .page-title {
+        
+        .hero h1 {
+            font-size: 36px;
             margin-bottom: 20px;
-            font-size: 28px;
-            color: #2c3e50;
         }
-
-        /* Фильтры и поиск */
-        .filters {
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .auth-container {
             background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        
+        .auth-tabs {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
-
-        .search-box {
-            flex-grow: 1;
-            position: relative;
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: var(--light-gray);
         }
-
-        .search-box input {
+        
+        .auth-tab.active {
+            background-color: white;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .auth-form {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
             width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
+            padding: 12px;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 16px;
         }
-
-        .search-box i {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            color: #777;
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
-
-        .filter-select {
-            min-width: 150px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .create-btn {
-            background-color: #27ae60;
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
             color: white;
+            padding: 12px 24px;
             border: none;
-            padding: 10px 20px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
-        .create-btn:hover {
-            background-color: #2ecc71;
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
         }
-
-        /* Список документов */
-        .documents-list {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .table {
+        
+        .btn-block {
+            display: block;
             width: 100%;
-            border-collapse: collapse;
         }
-
-        .table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-            text-align: left;
-            padding: 15px;
-            border-bottom: 2px solid #ddd;
+        
+        .features {
+            padding: 80px 0;
         }
-
-        .table td {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
-
-        .table tr:hover {
-            background-color: #f5f9fc;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .status-badge.new {
-            background-color: #e3f2fd;
-            color: #1565c0;
-        }
-
-        .status-badge.in-progress {
-            background-color: #fff8e1;
-            color: #ff8f00;
-        }
-
-        .status-badge.resolved {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .actions {
-            display: flex;
-            gap: 5px;
-        }
-
-        .action-btn {
-            background-color: transparent;
-            border: 1px solid #ddd;
-            width: 30px;
-            height: 30px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #555;
-            transition: all 0.3s;
-        }
-
-        .action-btn:hover {
-            background-color: #f1f1f1;
-        }
-
-        .action-btn.view {
-            color: #3498db;
-            border-color: #3498db;
-        }
-
-        .action-btn.edit {
-            color: #f39c12;
-            border-color: #f39c12;
-        }
-
-        .action-btn.delete {
-            color: #e74c3c;
-            border-color: #e74c3c;
-        }
-
-        /* Пагинация */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 5px;
-        }
-
-        .pagination-btn {
-            min-width: 35px;
-            height: 35px;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        
+        .feature-card {
             background-color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-
-        .pagination-btn:hover, .pagination-btn.active {
-            background-color: #3498db;
+        
+        .feature-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: #333;
             color: white;
-            border-color: #3498db;
+            padding: 30px 0;
+            text-align: center;
         }
-
-        /* Модальное окно */
-        .modal {
+        
+        .hidden {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
         }
-
-        .modal-content {
-            background-color: white;
-            border-radius: 5px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .close-btn {
-            background: transparent;
-            border: none;
-            font-size: 22px;
-            line-height: 1;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .modal-body {
-            padding: 20px;
-        }
-
-        .modal-footer {
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .modal-btn {
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .modal-btn.cancel {
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            color: #333;
-        }
-
-        .modal-btn.confirm {
-            background-color: #3498db;
-            border: 1px solid #3498db;
-            color: white;
-        }
-
-        .version-list {
-            list-style: none;
-        }
-
-        .version-item {
-            padding: 12px 15px;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .version-item:hover {
-            background-color: #f5f9fc;
-            border-color: #3498db;
-        }
-
-        .version-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .version-date {
-            font-size: 14px;
-            color: #777;
-        }
-
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top-color: #3498db;
-            margin: 20px auto;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
+            .hero h1 {
+                font-size: 28px;
             }
             
-            .filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .table {
-                display: block;
-                overflow-x: auto;
-            }
-            
-            .user-info {
-                flex-direction: column;
-                gap: 10px;
-                align-items: stretch;
-            }
-            
-            .user-role {
-                text-align: center;
-                margin-right: 0;
+            .hero p {
+                font-size: 16px;
             }
         }
     </style>
-    <!-- Font Awesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">Система документооборота</div>
-                <div class="user-info">
-                    <div class="user-role" id="userRole">Менеджер</div>
-                    <button class="logout-btn" id="logoutBtn">Выйти</button>
-                </div>
-            </div>
+            <div class="logo">ДокументСистем</div>
         </div>
     </header>
-
-    <main>
+    
+    <section class="hero">
         <div class="container">
-            <h1 class="page-title">Документы</h1>
-            
-            <div class="filters">
-                <div class="search-box">
-                    <input type="text" placeholder="Поиск документов..." id="searchInput">
-                    <i class="fas fa-search"></i>
-                </div>
-                <select class="filter-select" id="typeFilter">
-                    <option value="">Все типы</option>
-                    <option value="invoice">Счет</option>
-                    <option value="contract">Договор</option>
-                    <option value="act">Акт</option>
-                </select>
-                <select class="filter-select" id="dateFilter">
-                    <option value="">Любая дата</option>
-                    <option value="today">Сегодня</option>
-                    <option value="week">Эта неделя</option>
-                    <option value="month">Этот месяц</option>
-                </select>
-                <button class="create-btn" id="createDocBtn">
-                    <i class="fas fa-plus"></i> Создать документ
-                </button>
-            </div>
-            
-            <div class="documents-list">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>№</th>
-                            <th>Тип документа</th>
-                            <th>Компания</th>
-                            <th>Дата создания</th>
-                            <th>Статус</th>
-                            <th>Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody id="documentsTableBody">
-                        <!-- Данные будут загружены через JavaScript -->
-                    </tbody>
-                </table>
-                <div class="spinner" id="tableSpinner"></div>
-            </div>
-            
-            <div class="pagination" id="pagination">
-                <!-- Пагинация будет добавлена через JavaScript -->
-            </div>
+            <h1>Удобная система документооборота</h1>
+            <p>Создавайте, управляйте и отслеживайте документы с легкостью</p>
         </div>
-    </main>
+    </section>
     
-    <!-- Модальное окно для просмотра версий документа -->
-    <div class="modal" id="versionsModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Версии документа</h3>
-                <button class="close-btn" id="closeVersionsModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="spinner" id="versionsSpinner"></div>
-                <ul class="version-list" id="versionsList">
-                    <!-- Версии будут загружены через JavaScript -->
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn cancel" id="cancelVersionsModal">Закрыть</button>
-            </div>
+    <div class="auth-container">
+        <div class="auth-tabs">
+            <div class="auth-tab active" id="manager-tab">Менеджер</div>
+            <div class="auth-tab" id="accountant-tab">Бухгалтер</div>
         </div>
-    </div>
-    
-    <!-- Модальное окно для генерации документа -->
-    <div class="modal" id="generateModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Генерация документа</h3>
-                <button class="close-btn" id="closeGenerateModal">&times;</button>
-            </div>
-            <div class="modal-body">
+        
+        <div class="auth-form" id="manager-form">
+            <form id="manager-login-form">
                 <div class="form-group">
-                    <label for="documentDate">Дата документа:</label>
-                    <input type="date" id="documentDate" class="filter-select">
+                    <label for="manager-email">Электронная почта</label>
+                    <input type="email" id="manager-email" required>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn cancel" id="cancelGenerateModal">Отмена</button>
-                <button class="modal-btn confirm" id="confirmGenerateModal">Сгенерировать</button>
-            </div>
+                <div class="form-group">
+                    <label for="manager-password">Пароль</label>
+                    <input type="password" id="manager-password" required>
+                </div>
+                <button type="submit" class="btn btn-block">Войти как менеджер</button>
+            </form>
+        </div>
+        
+        <div class="auth-form hidden" id="accountant-form">
+            <form id="accountant-login-form">
+                <div class="form-group">
+                    <label for="accountant-email">Электронная почта</label>
+                    <input type="email" id="accountant-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountant-password">Пароль</label>
+                    <input type="password" id="accountant-password" required>
+                </div>
+                <button type="submit" class="btn btn-block">Войти как бухгалтер</button>
+            </form>
         </div>
     </div>
+    
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Возможности системы</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Управление документами</h3>
+                    <p>Создавайте и редактируйте документы с удобным интерфейсом</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>История изменений</h3>
+                    <p>Отслеживайте все версии документов и их изменения</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Управление компаниями</h3>
+                    <p>Добавляйте компании, бренды и банковские счета</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ДокументСистем - Все права защищены</p>
+        </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Проверка авторизации
-            const authToken = localStorage.getItem('authToken');
-            const userRole = localStorage.getItem('userRole');
-            
-            if (!authToken) {
-                // Если пользователь не авторизован, перенаправляем на страницу входа
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            // Установка роли пользователя в интерфейсе
-            document.getElementById('userRole').textContent = userRole || 'Пользователь';
-            
-            // Обработчик выхода из системы
-            document.getElementById('logoutBtn').addEventListener('click', function() {
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('userRole');
-                window.location.href = 'login.html';
-            });
-            
-            // Загрузка списка документов
-            loadDocuments();
-            
-            // Обработчик создания нового документа
-            document.getElementById('createDocBtn').addEventListener('click', function() {
-                window.location.href = 'create-document.html';
-            });
-            
-            // Обработчик поиска
-            document.getElementById('searchInput').addEventListener('input', debounce(function() {
-                loadDocuments();
-            }, 500));
-            
-            // Обработчики фильтров
-            document.getElementById('typeFilter').addEventListener('change', function() {
-                loadDocuments();
-            });
-            
-            document.getElementById('dateFilter').addEventListener('change', function() {
-                loadDocuments();
-            });
-            
-            // Обработчики модальных окон
-            document.getElementById('closeVersionsModal').addEventListener('click', function() {
-                document.getElementById('versionsModal').style.display = 'none';
-            });
-            
-            document.getElementById('cancelVersionsModal').addEventListener('click', function() {
-                document.getElementById('versionsModal').style.display = 'none';
-            });
-            
-            document.getElementById('closeGenerateModal').addEventListener('click', function() {
-                document.getElementById('generateModal').style.display = 'none';
-            });
-            
-            document.getElementById('cancelGenerateModal').addEventListener('click', function() {
-                document.getElementById('generateModal').style.display = 'none';
-            });
-            
-            document.getElementById('confirmGenerateModal').addEventListener('click', function() {
-                generateDocument();
-            });
+        // Переключение между формами входа
+        const managerTab = document.getElementById('manager-tab');
+        const accountantTab = document.getElementById('accountant-tab');
+        const managerForm = document.getElementById('manager-form');
+        const accountantForm = document.getElementById('accountant-form');
+        
+        managerTab.addEventListener('click', function() {
+            managerTab.classList.add('active');
+            accountantTab.classList.remove('active');
+            managerForm.classList.remove('hidden');
+            accountantForm.classList.add('hidden');
         });
         
-        // Функция для загрузки списка документов
-        function loadDocuments(page = 1) {
-            const tableBody = document.getElementById('documentsTableBody');
-            const spinner = document.getElementById('tableSpinner');
-            const pagination = document.getElementById('pagination');
-            
-            // Получаем значения фильтров
-            const searchQuery = document.getElementById('searchInput').value;
-            const typeFilter = document.getElementById('typeFilter').value;
-            const dateFilter = document.getElementById('dateFilter').value;
-            
-            // Показываем спиннер загрузки
-            tableBody.innerHTML = '';
-            spinner.style.display = 'block';
-            
-            // В реальном приложении здесь будет API запрос
-            // Для демонстрации используем имитацию загрузки данных
-            setTimeout(function() {
-                // Скрываем спиннер
-                spinner.style.display = 'none';
-                
-                // Заполняем таблицу демо-данными
-                const documents = [
-                    { id: 1, type: 'Счет', company: 'ООО "Рога и копыта"', date: '15.02.2025', status: 'new' },
-                    { id: 2, type: 'Договор', company: 'ИП Иванов', date: '12.02.2025', status: 'in-progress' },
-                    { id: 3, type: 'Акт', company: 'ЗАО "Техносфера"', date: '10.02.2025', status: 'resolved' },
-                    { id: 4, type: 'Счет', company: 'ООО "СтройМастер"', date: '05.02.2025', status: 'new' },
-                    { id: 5, type: 'Договор', company: 'ООО "ТехноПром"', date: '01.02.2025', status: 'in-progress' }
-                ];
-                
-                documents.forEach(function(doc) {
-                    const row = document.createElement('tr');
-                    
-                    // Статус для отображения
-                    let statusText = 'Новый';
-                    let statusClass = 'new';
-                    
-                    if (doc.status === 'in-progress') {
-                        statusText = 'В работе';
-                        statusClass = 'in-progress';
-                    } else if (doc.status === 'resolved') {
-                        statusText = 'Завершен';
-                        statusClass = 'resolved';
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${doc.id}</td>
-                        <td>${doc.type}</td>
-                        <td>${doc.company}</td>
-                        <td>${doc.date}</td>
-                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-                        <td class="actions">
-                            <button class="action-btn view" onclick="openVersionsModal(${doc.id})">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn edit" onclick="editDocument(${doc.id})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete" onclick="deleteDocument(${doc.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                    
-                    tableBody.appendChild(row);
-                });
-                
-                // Создаем пагинацию
-                createPagination(pagination, 5, page);
-            }, 800);
-        }
+        accountantTab.addEventListener('click', function() {
+            accountantTab.classList.add('active');
+            managerTab.classList.remove('active');
+            accountantForm.classList.remove('hidden');
+            managerForm.classList.add('hidden');
+        });
         
-        // Функция для создания пагинации
-        function createPagination(container, totalPages, currentPage) {
-            container.innerHTML = '';
+        // Обработка форм входа
+        document.getElementById('manager-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('manager-email').value;
+            const password = document.getElementById('manager-password').value;
             
-            // Кнопка "Предыдущая"
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'pagination-btn';
-            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.addEventListener('click', function() {
-                if (currentPage > 1) {
-                    loadDocuments(currentPage - 1);
-                }
-            });
-            container.appendChild(prevBtn);
-            
-            // Номера страниц
-            for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = 'pagination-btn';
-                if (i === currentPage) {
-                    pageBtn.classList.add('active');
-                }
-                pageBtn.textContent = i;
-                pageBtn.addEventListener('click', function() {
-                    loadDocuments(i);
-                });
-                container.appendChild(pageBtn);
-            }
-            
-            // Кнопка "Следующая"
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'pagination-btn';
-            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.addEventListener('click', function() {
-                if (currentPage < totalPages) {
-                    loadDocuments(currentPage + 1);
-                }
-            });
-            container.appendChild(nextBtn);
-        }
+            // Здесь будет код для отправки данных на сервер
+            console.log('Вход менеджера:', email, password);
+            alert('Функция входа будет реализована в бэкенде');
+        });
         
-        // Функция для открытия модального окна с версиями документа
-        function openVersionsModal(documentId) {
-            const modal = document.getElementById('versionsModal');
-            const versionsList = document.getElementById('versionsList');
-            const spinner = document.getElementById('versionsSpinner');
+        document.getElementById('accountant-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('accountant-email').value;
+            const password = document.getElementById('accountant-password').value;
             
-            modal.style.display = 'flex';
-            versionsList.innerHTML = '';
-            spinner.style.display = 'block';
-            
-            // В реальном приложении здесь будет API запрос
-            // Для демонстрации используем имитацию загрузки данных
-            setTimeout(function() {
-                spinner.style.display = 'none';
-                
-                // Демо-данные для версий
-                const versions = [
-                    { id: 1, date: '15.02.2025 14:30', author: 'Иванов И.И.' },
-                    { id: 2, date: '16.02.2025 10:15', author: 'Петров П.П.' },
-                    { id: 3, date: '17.02.2025 16:45', author: 'Сидоров С.С.' }
-                ];
-                
-                versions.forEach(function(version) {
-                    const item = document.createElement('li');
-                    item.className = 'version-item';
-                    item.onclick = function() {
-                        openGenerateModal(documentId, version.id);
-                    };
-                    
-                    item.innerHTML = `
-                        <div class="version-info">
-                            <div>Версия #${version.id}</div>
-                            <div class="version-date">${version.date}</div>
-                        </div>
-                        <div>Автор: ${version.author}</div>
-                    `;
-                    
-                    versionsList.appendChild(item);
-                });
-            }, 800);
-        }
-        
-        // Функция для открытия модального окна генерации документа
-        function openGenerateModal(documentId, versionId) {
-            const modal = document.getElementById('generateModal');
-            const dateInput = document.getElementById('documentDate');
-            
-            // Устанавливаем текущую дату
-            const today = new Date();
-            const dd = String(today.getDate()).padStart(2, '0');
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const yyyy = today.getFullYear();
-            
-            dateInput.value = `${yyyy}-${mm}-${dd}`;
-            
-            // Сохраняем ID документа и версии для использования при генерации
-            modal.dataset.documentId = documentId;
-            modal.dataset.versionId = versionId;
-            
-            // Закрываем модальное окно с версиями
-            document.getElementById('versionsModal').style.display = 'none';
-            
-            // Открываем модальное окно генерации
-            modal.style.display = 'flex';
-        }
-        
-        // Функция для генерации документа
-        function generateDocument() {
-            const modal = document.getElementById('generateModal');
-            const documentId = modal.dataset.documentId;
-            const versionId = modal.dataset.versionId;
-            const documentDate = document.getElementById('documentDate').value;
-            
-            // В реальном приложении здесь будет API запрос для генерации документа
-            alert(`Генерация документа #${documentId}, версия #${versionId}, дата: ${documentDate}`);
-            
-            // Закрываем модальное окно
-            modal.style.display = 'none';
-        }
-        
-        // Функция для редактирования документа
-        function editDocument(documentId) {
-            // В реальном приложении здесь будет переход на страницу редактирования
-            window.location.href = `edit-document.html?id=${documentId}`;
-        }
-        
-        // Функция для удаления документа
-        function deleteDocument(documentId) {
-            if (confirm(`Вы уверены, что хотите удалить документ #${documentId}?`)) {
-                // В реальном приложении здесь будет API запрос для удаления
-                alert(`Документ #${documentId} удален`);
-                loadDocuments();
-            }
-        }
-        
-        // Функция debounce для задержки поиска при вводе
-        function debounce(func, wait) {
-            let timeout;
-            return function() {
-                const context = this, args = arguments;
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    func.apply(context, args);
-                }, wait);
-            };
-        }
+            // Здесь будет код для отправки данных на сервер
+            console.log('Вход бухгалтера:', email, password);
+            alert('Функция входа будет реализована в бэкенде');
+        });
     </script>
 </body>
 </html>
