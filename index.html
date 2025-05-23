@@ -3,313 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Система документооборота</title>
+    <title>Онлайн Камень-Ножницы-Бумага</title>
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --text-color: #333;
-            --light-gray: #f5f5f5;
-            --border-color: #ddd;
-            --success-color: #2ecc71;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         body {
-            background-color: var(--light-gray);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(to right, #3498db, #2980b9);
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        
-        .auth-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 50px auto;
-            overflow: hidden;
-        }
-        
-        .auth-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            background-color: var(--light-gray);
-        }
-        
-        .auth-tab.active {
-            background-color: white;
-            border-bottom: 3px solid var(--primary-color);
-        }
-        
-        .auth-form {
-            padding: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input {
+            max-width: 800px;
             width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 16px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
         }
         
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        .section {
+            margin-bottom: 30px;
         }
         
         .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
+            background-color: #3498db;
             color: white;
-            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             transition: background-color 0.3s;
+            margin: 5px;
         }
         
         .btn:hover {
-            background-color: var(--secondary-color);
+            background-color: #2980b9;
         }
         
-        .btn-block {
-            display: block;
-            width: 100%;
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
         }
         
-        .features {
-            padding: 80px 0;
+        .btn-choice {
+            font-size: 24px;
+            padding: 15px 25px;
+            margin: 10px;
+            background-color: #2ecc71;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .btn-choice:hover {
+            background-color: #27ae60;
         }
         
-        .feature-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 5px;
+            width: 200px;
+        }
+        
+        .game-area {
+            display: none;
             text-align: center;
         }
         
-        .feature-icon {
-            font-size: 48px;
-            color: var(--primary-color);
+        .choices {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .players {
+            display: flex;
+            justify-content: space-around;
             margin-bottom: 20px;
         }
         
-        .feature-card h3 {
-            margin-bottom: 15px;
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
+        .player {
             text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            width: 45%;
         }
         
-        .hidden {
-            display: none;
+        .player.active {
+            background-color: #e3f2fd;
+            border: 2px solid #3498db;
         }
         
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
+        .player-choice {
+            font-size: 50px;
+            margin: 10px 0;
+            height: 60px;
+        }
+        
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        
+        .winner {
+            color: #e74c3c;
+            font-size: 28px;
+        }
+        
+        .room-id {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 18px;
+        }
+        
+        .status {
+            margin: 10px 0;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        
+        .round-info {
+            margin: 15px 0;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">ДокументСистем</div>
-        </div>
-    </header>
+    <h1>Онлайн Камень-Ножницы-Бумага</h1>
     
-    <section class="hero">
-        <div class="container">
-            <h1>Удобная система документооборота</h1>
-            <p>Создавайте, управляйте и отслеживайте документы с легкостью</p>
-        </div>
-    </section>
-    
-    <div class="auth-container">
-        <div class="auth-tabs">
-            <div class="auth-tab active" id="manager-tab">Менеджер</div>
-            <div class="auth-tab" id="accountant-tab">Бухгалтер</div>
-        </div>
-        
-        <div class="auth-form" id="manager-form">
-            <form id="manager-login-form">
-                <div class="form-group">
-                    <label for="manager-email">Электронная почта</label>
-                    <input type="email" id="manager-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="manager-password">Пароль</label>
-                    <input type="password" id="manager-password" required>
-                </div>
-                <button type="submit" class="btn btn-block">Войти как менеджер</button>
-            </form>
-        </div>
-        
-        <div class="auth-form hidden" id="accountant-form">
-            <form id="accountant-login-form">
-                <div class="form-group">
-                    <label for="accountant-email">Электронная почта</label>
-                    <input type="email" id="accountant-email" required>
-                </div>
-                <div class="form-group">
-                    <label for="accountant-password">Пароль</label>
-                    <input type="password" id="accountant-password" required>
-                </div>
-                <button type="submit" class="btn btn-block">Войти как бухгалтер</button>
-            </form>
-        </div>
-    </div>
-    
-    <section class="features">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Возможности системы</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📄</div>
-                    <h3>Управление документами</h3>
-                    <p>Создавайте и редактируйте документы с удобным интерфейсом</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>История изменений</h3>
-                    <p>Отслеживайте все версии документов и их изменения</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
-                    <h3>Управление компаниями</h3>
-                    <p>Добавляйте компании, бренды и банковские счета</p>
-                </div>
+    <div class="container">
+        <div id="setup-section" class="section">
+            <h2>Настройка игры</h2>
+            <div>
+                <button id="create-room-btn" class="btn">Создать комнату</button>
+                <span>или</span>
+                <input id="room-id-input" type="text" placeholder="Введите ID комнаты">
+                <button id="join-room-btn" class="btn">Присоединиться</button>
+            </div>
+            <div id="room-info" class="status" style="display: none;">
+                ID комнаты: <span id="room-id-display" class="room-id"></span>
+                <div id="room-status">Ожидание второго игрока...</div>
             </div>
         </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 ДокументСистем - Все права защищены</p>
+        
+        <div id="game-section" class="game-area">
+            <h2>Игра</h2>
+            <div class="round-info">
+                Раунд: <span id="round-number">1</span>
+            </div>
+            <div class="players">
+                <div id="player1" class="player">
+                    <h3>Игрок 1 (Вы)</h3>
+                    <div id="player1-choice" class="player-choice">?</div>
+                    <div id="player1-score">Очки: 0</div>
+                </div>
+                <div id="player2" class="player">
+                    <h3>Игрок 2</h3>
+                    <div id="player2-choice" class="player-choice">?</div>
+                    <div id="player2-score">Очки: 0</div>
+                </div>
+            </div>
+            
+            <div class="choices">
+                <button id="rock-btn" class="btn btn-choice">✊</button>
+                <button id="paper-btn" class="btn btn-choice">✋</button>
+                <button id="scissors-btn" class="btn btn-choice">✌️</button>
+            </div>
+            
+            <div id="result" class="result"></div>
+            
+            <button id="next-round-btn" class="btn" style="display: none;">Следующий раунд</button>
         </div>
-    </footer>
+    </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
     <script>
-        // Переключение между формами входа
-        const managerTab = document.getElementById('manager-tab');
-        const accountantTab = document.getElementById('accountant-tab');
-        const managerForm = document.getElementById('manager-form');
-        const accountantForm = document.getElementById('accountant-form');
+        // Ваша конфигурация Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyA3GvQ3_5m21WQjyZpW-rVj47H-oNzwaA0",
+  authDomain: "rock-paper-scissors-onli-4710a.firebaseapp.com",
+  projectId: "rock-paper-scissors-onli-4710a",
+  storageBucket: "rock-paper-scissors-onli-4710a.firebasestorage.app",
+  messagingSenderId: "447711332720",
+  appId: "1:447711332720:web:c779c875fe24437304a7b5"
+};
         
-        managerTab.addEventListener('click', function() {
-            managerTab.classList.add('active');
-            accountantTab.classList.remove('active');
-            managerForm.classList.remove('hidden');
-            accountantForm.classList.add('hidden');
-        });
+        // Инициализация Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
         
-        accountantTab.addEventListener('click', function() {
-            accountantTab.classList.add('active');
-            managerTab.classList.remove('active');
-            accountantForm.classList.remove('hidden');
-            managerForm.classList.add('hidden');
-        });
+        // Элементы DOM
+        const createRoomBtn = document.getElementById('create-room-btn');
+        const joinRoomBtn = document.getElementById('join-room-btn');
+        const roomIdInput = document.getElementById('room-id-input');
+        const roomIdDisplay = document.getElementById('room-id-display');
+        const roomInfo = document.getElementById('room-info');
+        const roomStatus = document.getElementById('room-status');
+        const setupSection = document.getElementById('setup-section');
+        const gameSection = document.getElementById('game-section');
         
-        // Обработка форм входа
-        document.getElementById('manager-login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('manager-email').value;
-            const password = document.getElementById('manager-password').value;
+        const player1Element = document.getElementById('player1');
+        const player2Element = document.getElementById('player2');
+        const player1Choice = document.getElementById('player1-choice');
+        const player2Choice = document.getElementById('player2-choice');
+        const player1Score = document.getElementById('player1-score');
+        const player2Score = document.getElementById('player2-score');
+        const roundNumber = document.getElementById('round-number');
+        const resultElement = document.getElementById('result');
+        const nextRoundBtn = document.getElementById('next-round-btn');
+        
+        const rockBtn = document.getElementById('rock-btn');
+        const paperBtn = document.getElementById('paper-btn');
+        const scissorsBtn = document.getElementById('scissors-btn');
+        
+        // Переменные игры
+        let roomId;
+        let isHost = false;
+        let currentPlayer = 1;
+        let player1ScoreValue = 0;
+        let player2ScoreValue = 0;
+        let currentRound = 1;
+        let player1Selection = null;
+        let player2Selection = null;
+        let gameRef;
+        
+        // Создание комнаты
+        createRoomBtn.addEventListener('click', () => {
+            roomId = generateRoomId();
+            isHost = true;
+            currentPlayer = 1;
             
-            // Здесь будет код для отправки данных на сервер
-            console.log('Вход менеджера:', email, password);
-            alert('Функция входа будет реализована в бэкенде');
+            // Создаем комнату в Firebase
+            gameRef = database.ref('games/' + roomId);
+            
+            gameRef.set({
+                player1: null,
+                player2: null,
+                player1Ready: false,
+                player2Ready: false,
+                player1Score: 0,
+                player2Score: 0,
+                round: 1,
+                gameStarted: false,
+                gameOver: false
+            });
+            
+            // Показываем информацию о комнате
+            roomIdDisplay.textContent = roomId;
+            roomInfo.style.display = 'block';
+            roomStatus.textContent = 'Ожидание второго игрока...';
+            
+            // Скрываем кнопку создания комнаты
+            createRoomBtn.disabled = true;
+            
+            // Слушаем изменения в комнате
+            setupGameListeners();
         });
         
-        document.getElementById('accountant-login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('accountant-email').value;
-            const password = document.getElementById('accountant-password').value;
+        // Присоединение к комнате
+        joinRoomBtn.addEventListener('click', () => {
+            roomId = roomIdInput.value.trim();
+            if (!roomId) {
+                alert('Пожалуйста, введите ID комнаты');
+                return;
+            }
             
-            // Здесь будет код для отправки данных на сервер
-            console.log('Вход бухгалтера:', email, password);
-            alert('Функция входа будет реализована в бэкенде');
+            isHost = false;
+            currentPlayer = 2;
+            
+            // Проверяем существование комнаты
+            gameRef = database.ref('games/' + roomId);
+            
+            gameRef.once('value').then((snapshot) => {
+                if (snapshot.exists()) {
+                    const gameData = snapshot.val();
+                    
+                    if (gameData.player2 !== null) {
+                        alert('Комната уже заполнена');
+                        return;
+                    }
+                    
+                    // Присоединяемся к комнате
+                    gameRef.update({
+                        player2: 'Игрок 2'
+                    });
+                    
+                    // Показываем информацию о комнате
+                    roomIdDisplay.textContent = roomId;
+                    roomInfo.style.display = 'block';
+                    roomStatus.textContent = 'Присоединено к комнате';
+                    
+                    // Скрываем кнопку присоединения
+                    joinRoomBtn.disabled = true;
+                    roomIdInput.disabled = true;
+                    
+                    // Слушаем изменения в комнате
+                    setupGameListeners();
+                } else {
+                    alert('Комната не найдена');
+                }
+            });
+        });
+        
+        // Настройка слушателей игры
+        function setupGameListeners() {
+            gameRef.on('value', (snapshot) => {
+                const gameData = snapshot.val();
+                
+                if (!gameData) return;
+                
+                // Обновляем статус комнаты
+                if (isHost) {
+                    if (gameData.player2) {
+                        roomStatus.textContent = 'Игрок 2 присоединился';
+                    }
+                }
+                
+                // Проверяем, началась ли игра
+                if (gameData.gameStarted && !setupSection.hidden) {
+                    setupSection.style.display = 'none';
+                    gameSection.style.display = 'block';
+                    resetRound();
+                }
+                
+                // Обновляем состояние игры
+                if (gameData.gameStarted) {
+                    // Обновляем выбор игроков
+                    if (gameData.player1Choice && currentPlayer === 1) {
+                        player2Choice.textContent = getChoiceSymbol(gameData.player1Choice);
+                    } else if (gameData.player2Choice && currentPlayer === 2) {
+                        player1Choice.textContent = getChoiceSymbol(gameData.player2Choice);
+                    }
+                    
+                    // Обновляем очки
+                    player1ScoreValue = gameData.player1Score || 0;
+                    player2ScoreValue = gameData.player2Score || 0;
+                    player1Score.textContent = `Очки: ${player1ScoreValue}`;
+                    player2Score.textContent = `Очки: ${player2ScoreValue}`;
+                    
+                    // Обновляем раунд
+                    currentRound = gameData.round || 1;
+                    roundNumber.textContent = currentRound;
+                    
+                    // Проверяем, сделали ли оба выбора
+                    if (gameData.player1Ready && gameData.player2Ready) {
+                        // Определяем победителя
+                        const winner = determineWinner(gameData.player1Choice, gameData.player2Choice);
+                        
+                        // Показываем результат
+                        if (winner === 0) {
+                            resultElement.textContent = "Ничья!";
+                        } else if (winner === 1) {
+                            resultElement.textContent = "Игрок 1 выиграл раунд!";
+                        } else {
+                            resultElement.textContent = "Игрок 2 выиграл раунд!";
+                        }
+                        
+                        // Активируем кнопку следующего раунда
+                        nextRoundBtn.style.display = 'block';
+                        
+                        // Блокируем кнопки выбора
+                        rockBtn.disabled = true;
+                        paperBtn.disabled = true;
+                        scissorsBtn.disabled = true;
+                    }
+                }
+            });
+        }
+        
+        // Обработчики выбора
+        rockBtn.addEventListener('click', () => makeChoice('rock'));
+        paperBtn.addEventListener('click', () => makeChoice('paper'));
+        scissorsBtn.addEventListener('click', () => makeChoice('scissors'));
+        
+        // Сделать выбор
+        function makeChoice(choice) {
+            if (currentPlayer === 1) {
+                player1Choice.textContent = getChoiceSymbol(choice);
+                gameRef.update({
+                    player1Choice: choice,
+                    player1Ready: true
+                });
+            } else {
+                player2Choice.textContent = getChoiceSymbol(choice);
+                gameRef.update({
+                    player2Choice: choice,
+                    player2Ready: true
+                });
+            }
+            
+            // Блокируем кнопки после выбора
+            rockBtn.disabled = true;
+            paperBtn.disabled = true;
+            scissorsBtn.disabled = true;
+            
+            // Проверяем, можно ли начать игру (если это первый раунд)
+            gameRef.once('value').then((snapshot) => {
+                const gameData = snapshot.val();
+                if (!gameData.gameStarted && gameData.player1 && gameData.player2) {
+                    gameRef.update({
+                        gameStarted: true
+                    });
+                }
+            });
+        }
+        
+        // Следующий раунд
+        nextRoundBtn.addEventListener('click', () => {
+            resetRound();
+            gameRef.update({
+                player1Choice: null,
+                player2Choice: null,
+                player1Ready: false,
+                player2Ready: false,
+                round: currentRound + 1
+            });
+        });
+        
+        // Сброс раунда
+        function resetRound() {
+            player1Choice.textContent = '?';
+            player2Choice.textContent = '?';
+            resultElement.textContent = '';
+            nextRoundBtn.style.display = 'none';
+            
+            // Разблокируем кнопки выбора
+            rockBtn.disabled = false;
+            paperBtn.disabled = false;
+            scissorsBtn.disabled = false;
+        }
+        
+        // Определение победителя
+        function determineWinner(choice1, choice2) {
+            if (choice1 === choice2) return 0; // Ничья
+            
+            if (
+                (choice1 === 'rock' && choice2 === 'scissors') ||
+                (choice1 === 'paper' && choice2 === 'rock') ||
+                (choice1 === 'scissors' && choice2 === 'paper')
+            ) {
+                return 1; // Игрок 1 выиграл
+            } else {
+                return 2; // Игрок 2 выиграл
+            }
+        }
+        
+        // Получение символа для выбора
+        function getChoiceSymbol(choice) {
+            switch (choice) {
+                case 'rock': return '✊';
+                case 'paper': return '✋';
+                case 'scissors': return '✌️';
+                default: return '?';
+            }
+        }
+        
+        // Генерация ID комнаты
+        function generateRoomId() {
+            return Math.random().toString(36).substring(2, 8).toUpperCase();
+        }
+        
+        // Очистка при закрытии страницы
+        window.addEventListener('beforeunload', () => {
+            if (gameRef && isHost) {
+                gameRef.remove();
+            }
         });
     </script>
 </body>
